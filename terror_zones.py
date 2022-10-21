@@ -44,56 +44,45 @@ if not TZ_DISCORD_TOKEN or TZ_DISCORD_CHANNEL_ID == 0:
 
 #GET https://d2runewizard.com/api/terror-zone
 
-class Diablo2IOClient():
+class D2RuneWizardClient():
     """
-    Interacts with the diablo2.io dclone API. Tracks the current progress and recent reports for each mode.
+    Interacts with the d2runewizard.com terror zone API.
     """
-    def status(self, zone=''):
+    @staticmethod
+    def terror_zone():
         """
         Get the currently reported TZ status from the D2RW TZ API.
 
-        API documentation: https://d2runewizard.com/integration
+        API documentation: https://d2runewizard.com/integration#terror-zone-tracker
         """
         try:
             url = 'https://d2runewizard.com/api/terror-zone'
-            params = {'zone': zone}
-            #headers = {'User-Agent': f'dclone-discord/{__version__}'}
+            params = {'token': TZ_D2RW_TOKEN}
+            # headers = {'User-Agent': f'dclone-discord/{__version__}'}
             response = get(url, params=params, timeout=10)
 
             response.raise_for_status()
             return response.json()
         except Exception as err:
-            print(f'[D2RW.status] API Error: {err}')
+            print(f'[D2RW.terror_zone] API Error: {err}')
             return None
 
     def progress_message(self):
         """
-        Returns a formatted message of the current dclone status by mode (region, ladder, hardcore).
+        Returns a formatted message of the current terror zone status.
         """
         # get the currently reported TZ status
-        # TODO: return from current_progress instead of querying the API every time?
+        tz_status = D2RuneWizardClient.terror_zone()
 
         # build the message
-        message = 'Current TZ Progress:\n'
-        for data in status:
-            zone = data.get('zone')
-
-            message += f' - **{ZONE[zone]}**\n'
+        message = 'Current Terror Zone:\n'
+        message += f'Zone: **{tz_status.get("zone")}** ({tz_status.get("act")}'
         message += '> Data courtesy of D2RW'
 
 class DiscordClient(discord.Client):
     """
-    Connects to Discord and starts a background task that checks the diablo2.io dclone API every 60 seconds.
-    When a progress change occurs that is greater than or equal to DCLONE_THRESHOLD and for more than DCLONE_REPORTS
-    consecutive updates, the bot will send a message to the configured DCLONE_DISCORD_CHANNEL_ID.
+    Connects to Discord and watches for the `.tz` or `!tz` command to report the current Terror Zone status.
     """
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        # DCLONE_D2RW_TOKEN is required for planned walk notifications
-        if not TZ_D2RW_TOKEN:
-            print('WARNING: TZ_D2RW_TOKEN is not set, you will not receive Terror Zone notifications.')
-
     async def on_ready(self):
         """
         Runs when the bot is connected to Discord and ready to receive messages. This starts our background task.
@@ -111,15 +100,9 @@ class DiscordClient(discord.Client):
             return
         print(f'Messages will be sent to #{channel.name} on the {channel.guild.name} server')
 
-        # start the background task to monitor TZ status
-        try:
-            self.check_dclone_status.start()
-        except RuntimeError as err:
-            print(f'Background Task Error: {err}')
-
     async def on_message(self, message):
         """
-        This is called any time the bot receives a message. It implements the dclone chatop.
+        This is called any time the bot receives a message. It implements the tz chatop.
         """
         if message.content.startswith('.tz') or message.content.startswith('!tz'):
             print(f'Responding to TZ chatop from {message.author}')
