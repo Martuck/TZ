@@ -42,7 +42,6 @@ if not TZ_DISCORD_TOKEN or TZ_DISCORD_CHANNEL_ID == 0:
     print('Please set TZ_DISCORD_TOKEN and TZ_DISCORD_CHANNEL_ID in your environment.')
     exit(1)
 
-#GET https://d2runewizard.com/api/terror-zone
 
 class D2RuneWizardClient():
     """
@@ -67,7 +66,8 @@ class D2RuneWizardClient():
             print(f'[D2RW.terror_zone] API Error: {err}')
             return None
 
-    def progress_message(self):
+    @staticmethod
+    def terror_zone_message():
         """
         Returns a formatted message of the current terror zone status.
         """
@@ -76,8 +76,11 @@ class D2RuneWizardClient():
 
         # build the message
         message = 'Current Terror Zone:\n'
-        message += f'Zone: **{tz_status.get("zone")}** ({tz_status.get("act")}'
+        message += f'Zone: **{tz_status.get("terrorZone").get("zone")}** ({tz_status.get("terrorZone").get("act")})\n'
         message += '> Data courtesy of D2RW'
+
+        return message
+
 
 class DiscordClient(discord.Client):
     """
@@ -106,7 +109,7 @@ class DiscordClient(discord.Client):
         """
         if message.content.startswith('.tz') or message.content.startswith('!tz'):
             print(f'Responding to TZ chatop from {message.author}')
-            current_status = self.tz.progress_message()
+            current_status = D2RuneWizardClient.terror_zone_message()
 
             channel = self.get_channel(message.channel.id)
             await channel.send(current_status)
