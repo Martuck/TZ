@@ -29,8 +29,7 @@ import discord
 TZ_DISCORD_TOKEN = environ.get('TZ_DISCORD_TOKEN')
 TZ_DISCORD_CHANNEL_ID = int(environ.get('TZ_DISCORD_CHANNEL_ID', 0))
 
-# D2RuneWizard API (Optional but recommended)
-# This token is necessary for planned walk notifications
+# D2RuneWizard API (Required)
 TZ_D2RW_TOKEN = environ.get('TZ_D2RW_TOKEN')
 
 ########################
