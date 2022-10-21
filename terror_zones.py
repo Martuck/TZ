@@ -34,9 +34,9 @@ TZ_D2RW_TOKEN = environ.get('TZ_D2RW_TOKEN')
 ########################
 __version__ = '0.1'
 
-# TZ_DISCORD_TOKEN and TZ_DISCORD_CHANNEL_ID are required
-if not TZ_DISCORD_TOKEN or TZ_DISCORD_CHANNEL_ID == 0:
-    print('Please set TZ_DISCORD_TOKEN and TZ_DISCORD_CHANNEL_ID in your environment.')
+# TZ_DISCORD_TOKEN, TZ_D2RW_TOKEN, and TZ_DISCORD_CHANNEL_ID are required
+if not TZ_DISCORD_TOKEN or not TZ_D2RW_TOKEN or TZ_DISCORD_CHANNEL_ID == 0:
+    print('Please set TZ_DISCORD_TOKEN, TZ_D2RW_TOKEN, and TZ_DISCORD_CHANNEL_ID in your environment.')
     exit(1)
 
 
