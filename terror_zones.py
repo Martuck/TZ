@@ -111,6 +111,7 @@ class DiscordClient(discord.Client):
             channel = self.get_channel(message.channel.id)
             await channel.send(current_status)
 
+
 if __name__ == '__main__':
     client = DiscordClient(intents=discord.Intents.default())
     client.run(TZ_DISCORD_TOKEN)
