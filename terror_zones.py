@@ -70,19 +70,14 @@ class D2RuneWizardClient():
             return None
 
     @staticmethod
-    def ping():
-        tz_status = D2RuneWizardClient.terror_zone()
-        zone = tz_status.get("terrorZone").get("zone")
-        pingid = tzdict.get(zone)
-        return pingid
-
-    @staticmethod
     def terror_zone_message():
         """
         Returns a formatted message of the current terror zone status.
         """
         # get the currently reported TZ status
         tz_status = D2RuneWizardClient.terror_zone()
+        zone = tz_status.get("terrorZone").get("zone")
+        pingid = tzdict.get(zone)
 
         # build the message
         message = 'Current Terror Zone:\n'
