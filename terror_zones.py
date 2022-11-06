@@ -4,18 +4,25 @@ This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
-
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
-
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 from os import environ
 from requests import get
 import discord
+
+##################
+# Bot Dictionary #
+##################
+tzdict = {'Blood Moor and Den of Evil': '1033399859039973457', 'Cold Plains and The Cave': '1033400167900123226', 'Burial Grounds, The Crypt, and the Mausoleum': '1033400209704755210', 'Stony Field': '1033400326205735014', 'Dark Wood': '1033400366630441060', 'The Forgotten Tower': '1033400469634170922', 'Jail': '1033400502798516355', 'Cathedral and Catacombs': '1033400591436754954', 'The Pit': '1033400658008735775', 'Tristram': '1033400671493423126', 'Moo Moo Farm': '1033400750656729088', 'Sewers': '1033400906227654829', 'Rocky Waste and Stony Tomb': '1033400908308041870', 'Dry Hills and Halls of the Dead': '1033400910669426828', 'Far Oasis': '1033400912795943003', 'Lost City, Valley of Snakes, and Claw Viper Temple': '1033400914867933244', 'Arcane Sanctuary': '1033400916650491915', "Tal Rasha's Tombs": "1033400918974152904", 'Spider Forest and Spider Cavern': '1033401329814601748', 'Flayer Jungle and Flayer Dungeon': '1033401331848859758', 'Kurast Bazaar, Ruined Temple, and Disused Fane': '1033401333912436767', 'Kurast Sewers': '1033401336399679498', 'Travincal': '1033401338425528383', 'Durance of Hate': '1033401340682055680', 'Outer Steppes and Plains of Despair': '1033401688201101402', 'River of Flame and City of the Damned': '1033401690436665425', 'Chaos Sanctuary': '1033401692491874334', 'Bloody Foothills': '1033401900269326396', 'Frigid Highlands': '1033401902186119259', 'Glacial Trail': '1033401904371335168', 'Crystalline Passage and Frozen River': '1033401906736922624', 'Arreat Plateau': '1033401910767669308', "Nihlathak's Temple, Halls of Anguish, Halls of Pain, and Halls of Vaught": "1033401913309417583", "Ancient's Way and Icy Cellar": "1033401915377188935", 'Worldstone Keep, Throne of Destruction, and Worldstone Chamber': '1033401917591781527'}
+
+#####################
+# End of Dictionary #
+#####################
 
 #####################
 # Bot Configuration #
@@ -48,7 +55,6 @@ class D2RuneWizardClient():
     def terror_zone():
         """
         Get the currently reported TZ status from the D2RW TZ API.
-
         API documentation: https://d2runewizard.com/integration#terror-zone-tracker
         """
         try:
@@ -64,6 +70,13 @@ class D2RuneWizardClient():
             return None
 
     @staticmethod
+    def ping():
+        tz_status = D2RuneWizardClient.terror_zone()
+        zone = tz_status.get("terrorZone").get("zone")
+        pingid = tzdict.get(zone)
+        return pingid
+
+    @staticmethod
     def terror_zone_message():
         """
         Returns a formatted message of the current terror zone status.
@@ -73,7 +86,7 @@ class D2RuneWizardClient():
 
         # build the message
         message = 'Current Terror Zone:\n'
-        message += f'Zone: **{tz_status.get("terrorZone").get("zone")}** ({tz_status.get("terrorZone").get("act")})\n'
+        message += f'Zone: **{tz_status.get("terrorZone").get("zone")}** ({tz_status.get("terrorZone").get("act")}) <@&{D2RuneWizardClient.pingid}>\n'
         message += '> Data courtesy of D2RW'
 
         return message
