@@ -81,7 +81,7 @@ class D2RuneWizardClient():
 
         # build the message
         message = 'Current Terror Zone:\n'
-        message += f'Zone: **{tz_status.get("terrorZone").get("zone")}** ({tz_status.get("terrorZone").get("act")}) <@&{D2RuneWizardClient.pingid}>\n'
+        message += f'Zone: **{tz_status.get("terrorZone").get("zone")}** ({tz_status.get("terrorZone").get("act")}) <@&{pingid}>\n'
         message += '> Data courtesy of D2RW'
 
         return message
