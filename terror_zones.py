@@ -155,6 +155,26 @@ class DiscordClient(discord.Client):
             # update the current terror zone
             self.d2rw.current_terror_zone = terror_zone
 
+    @check_terror_zone.before_loop
+    async def before_check_terror_zone(self):
+        """
+        Runs before the background task starts. This waits for the bot to connect to Discord and sets the initial terror zone status.
+        """
+        await self.wait_until_ready()  # wait until the bot logs in
+
+        # get the current terror zone
+        try:
+            terror_zone = self.d2rw.terror_zone().get('terrorZone').get('zone')
+        except Exception as err:
+            print(f'Unable to set the current terror zone at startup: {err}')
+            return
+
+        # set the current terror zone
+        # this prevents a duplicate message from being sent when the bot starts
+        # comment this out if you want the bot to post the current terror zone when it starts
+        self.d2rw.current_terror_zone = terror_zone
+        print(f'Initial Terror Zone is {terror_zone}')
+
 
 if __name__ == '__main__':
     client = DiscordClient(intents=discord.Intents.default())
