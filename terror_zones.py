@@ -13,6 +13,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 from os import environ
 from requests import get
+from discord.ext import tasks
 import discord
 
 ##################
@@ -49,8 +50,12 @@ if not TZ_DISCORD_TOKEN or not TZ_D2RW_TOKEN or TZ_DISCORD_CHANNEL_ID == 0:
 
 class D2RuneWizardClient():
     """
-    Interacts with the d2runewizard.com terror zone API.
+    Interacts with the d2runewizard.com terror zone API and tracks the current terror zone.
     """
+    def __init__(self):
+        # tracks the current terror zone
+        self.current_terror_zone = None
+
     @staticmethod
     def terror_zone():
         """
@@ -91,6 +96,11 @@ class DiscordClient(discord.Client):
     """
     Connects to Discord and watches for the `.tz` or `!tz` command to report the current Terror Zone status.
     """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.d2rw = D2RuneWizardClient()
+
     async def on_ready(self):
         """
         Runs when the bot is connected to Discord and ready to receive messages. This starts our background task.
@@ -108,6 +118,12 @@ class DiscordClient(discord.Client):
             return
         print(f'Messages will be sent to #{channel.name} on the {channel.guild.name} server')
 
+        # start the background task to monitor the current terror zone
+        try:
+            self.check_terror_zone.start()
+        except RuntimeError as err:
+            print(f'Background Task Error: {err}')
+
     async def on_message(self, message):
         """
         This is called any time the bot receives a message. It implements the tz chatop.
@@ -118,6 +134,46 @@ class DiscordClient(discord.Client):
 
             channel = self.get_channel(message.channel.id)
             await channel.send(current_status)
+
+    @tasks.loop(seconds=60)
+    async def check_terror_zone(self):
+        """
+        Background task that checks the current terror zone via the d2runewizard.com API every 60 seconds.
+        If the current status is different from the last known status, a message is sent to Discord.
+        """
+        # print('>> Checking Terror Zone status...')
+        terror_zone = self.d2rw.terror_zone().get('terrorZone').get('zone')
+
+        # if the terror zone changed since the last check, send a message to Discord
+        if terror_zone != self.d2rw.current_terror_zone:
+            print(f'Terror Zone changed from {self.d2rw.current_terror_zone} to {terror_zone}')
+            tz_message = D2RuneWizardClient.terror_zone_message()
+
+            channel = self.get_channel(TZ_DISCORD_CHANNEL_ID)
+            await channel.send(tz_message)
+
+            # update the current terror zone
+            self.d2rw.current_terror_zone = terror_zone
+
+    @check_terror_zone.before_loop
+    async def before_check_terror_zone(self):
+        """
+        Runs before the background task starts. This waits for the bot to connect to Discord and sets the initial terror zone status.
+        """
+        await self.wait_until_ready()  # wait until the bot logs in
+
+        # get the current terror zone
+        try:
+            terror_zone = self.d2rw.terror_zone().get('terrorZone').get('zone')
+        except Exception as err:
+            print(f'Unable to set the current terror zone at startup: {err}')
+            return
+
+        # set the current terror zone
+        # this prevents a duplicate message from being sent when the bot starts
+        # comment this out if you want the bot to post the current terror zone when it starts
+        self.d2rw.current_terror_zone = terror_zone
+        print(f'Initial Terror Zone is {terror_zone}')
 
 
 if __name__ == '__main__':
