@@ -55,7 +55,159 @@ tzdict = {
     'Travincal': '1033401338425528383',
     'Tristram': '1033400671493423126',
     'Worldstone Keep, Throne of Destruction, and Worldstone Chamber': '1033401917591781527'
- }
+}
+
+bpdict = {
+    'Ancient\'s Way and Icy Cellar': '6-8',
+    'Arcane Sanctuary': '7-9',
+    'Arreat Plateau': '9-11',
+    'Blood Moor and Den of Evil': '7-9',
+    'Bloody Foothills': '4-6',
+    'Burial Grounds, The Crypt, and The Mausoleum': '8-10',
+    'Cathedral and Catacombs': '27-35',
+    'Chaos Sanctuary': '6-7',
+    'Cold Plains and The Cave': '13-16',
+    'Crystalline Passage and Frozen River': '13-17',
+    'Dark Wood': '7-9',
+    'Dry Hills and Halls of the Dead': '20-27',
+    'Durance of Hate': '15-21',
+    'Far Oasis': '7-9',
+    'Flayer Jungle and Flayer Dungeon': '22-29',
+    'Frigid Highlands': '9-11',
+    'Glacial Trail': '7-9',
+    'Jail': '18-24',
+    'Kurast Bazaar, Ruined Temple, and Disused Fane': '15-17',
+    'Kurast Sewers': '12-14',
+    'Lost City, Valley of Snakes, and Claw Viper Temple': '21-28',
+    'Moo Moo Farm': '6-8',
+    'Nihlathak\'s Temple, Halls of Anguish, Halls of Pain, and Halls of Vaught': '12-14',
+    'Outer Steppes and Plains of Despair': '16-20',
+    'River of Flame and City of the Damned': '14-17',
+    'Rocky Waste and Stony Tomb': '17-23',
+    'Sewers': '18-24',
+    'Spider Forest and Spider Cavern': '14-20',
+    'Stony Field': '7-9',
+    'Tal Rasha\'s Tombs and Tal Rasha\'s Chamber': '49-63',
+    'The Forgotten Tower': '15-20',
+    'The Pit': '8-11',
+    'Travincal': '6-8',
+    'Tristram': '5-6',
+    'Worldstone Keep, Throne of Destruction, and Worldstone Chamber': '22-29'
+}
+
+sudict = {
+    'Ancient\'s Way and Icy Cellar': 'Snapchip Shatter',
+    'Arcane Sanctuary': 'The Summoner',
+    'Arreat Plateau': 'Thresh Socket',
+    'Blood Moor and Den of Evil': 'Corpsefire',
+    'Bloody Foothills': 'Dac Farren and Shenk The Overseer',
+    'Burial Grounds, The Crypt, and The Mausoleum': 'Blood Raven and Bonebreaker',
+    'Cathedral and Catacombs': 'Bone Ash and Andariel',
+    'Chaos Sanctuary': 'Grand Vizier of Chaos, Infector of Souls, Lord De Seis, and Diablo',
+    'Cold Plains and The Cave': 'Bishibosh and Coldcrow',
+    'Crystalline Passage and Frozen River': 'Frozenstein',
+    'Dark Wood': 'Treehead Woodfist',
+    'Dry Hills and Halls of the Dead': 'Bloodwitch the Wild',
+    'Durance of Hate': 'Wyand Voidbringer, Maffer Dragonhand, Bremm Sparkfist, and Mephisto',
+    'Far Oasis': 'Beetleburst',
+    'Flayer Jungle and Flayer Dungeon': 'Stormtree and Witch Doctor Endugu',
+    'Frigid Highlands': 'Eldritch the Rectifier, Sharptooth Slayer, and Eyeback the Unleashed',
+    'Glacial Trail': 'Bonesaw Breaker',
+    'Jail': 'Pitspawn Fouldog',
+    'Kurast Bazaar, Ruined Temple, and Disused Fane': 'Battlemaid Sarina',
+    'Kurast Sewers': 'Icehawk Riftwing',
+    'Lost City, Valley of Snakes, and Claw Viper Temple': 'Dark Elder and Fangskin',
+    'Moo Moo Farm': 'The Cow King',
+    'Nihlathak\'s Temple, Halls of Anguish, Halls of Pain, and Halls of Vaught': 'Pindleskin and Nihlathak',
+    'Outer Steppes and Plains of Despair': 'Izual',
+    'River of Flame and City of the Damned': 'Hephasto The Armorer',
+    'Rocky Waste and Stony Tomb': 'Creeping Feature',
+    'Sewers': 'Radament',
+    'Spider Forest and Spider Cavern': 'Sszark The Burning',
+    'Stony Field': 'Rakanishu',
+    'Tal Rasha\'s Tombs and Tal Rasha\'s Chamber': 'Ancient Kaa The Soulless and Duriel',
+    'The Forgotten Tower': 'The Countess',
+    'The Pit': 'None',
+    'Travincal': 'Ismail Vilehand, Toorc Icefist, and Geleb Flamefinger',
+    'Tristram': 'Griswold',
+    'Worldstone Keep, Throne of Destruction, and Worldstone Chamber': 'Colenzo The Annihilator, Achmel The Cursed, Bartuc The Bloody, Ventar The Unholy, Lister The Tormentor, and Baal'
+}
+
+imdict = {
+    'Ancient\'s Way and Icy Cellar': 'Cold, Lightning, Poison, and Physical',
+    'Arcane Sanctuary': 'Cold, Fire, Lightning, Poison, and Physical',
+    'Arreat Plateau': 'Cold, Fire, Lightning, and Poison',
+    'Blood Moor and Den of Evil': 'Cold and Fire',
+    'Bloody Foothills': 'Cold, Fire, Lightning, and Poison',
+    'Burial Grounds, The Crypt, and The Mausoleum': 'Lightning',
+    'Cathedral and Catacombs': 'Cold, Fire, Lightning, and Physical',
+    'Chaos Sanctuary': 'Cold, Fire, and Lightning',
+    'Cold Plains and The Cave': 'Cold, Fire, and Lightning',
+    'Crystalline Passage and Frozen River': 'Cold, Fire, Lightning, Poison, Physical, and Magic',
+    'Dark Wood': 'Cold, Fire, and Poison',
+    'Dry Hills and Halls of the Dead': 'Cold, Fire, Lightning, and Poison',
+    'Durance of Hate': 'Cold, Fire, Lightning, and Poison',
+    'Far Oasis': 'Lightning, Poison, and Physical',
+    'Flayer Jungle and Flayer Dungeon': 'Cold, Fire, Lightning, Poison, Physical, and Magic',
+    'Frigid Highlands': 'Cold, Fire, Lightning, Poison, Physical, and Magic',
+    'Glacial Trail': 'Cold, Fire, Lightning, Poison, and Physical',
+    'Jail': 'Cold, Fire, Poison, and Physical',
+    'Kurast Bazaar, Ruined Temple, and Disused Fane': 'Cold, Fire, Lightning, Poison, Physical, and Magic',
+    'Kurast Sewers': 'Cold, Lightning, Poison, and Magic',
+    'Lost City, Valley of Snakes, and Claw Viper Temple': 'Cold, Fire, Lightning, Poison, and Magic',
+    'Moo Moo Farm': 'None',
+    'Nihlathak\'s Temple, Halls of Anguish, Halls of Pain, and Halls of Vaught': 'Cold, Fire, Lightning, Poison, Physical, and Magic',
+    'Outer Steppes and Plains of Despair': 'Cold, Fire, Lightning, and Poison',
+    'River of Flame and City of the Damned': 'Cold, Fire, Lightning, and Poison',
+    'Rocky Waste and Stony Tomb': 'Cold, Fire, Lightning, Poison, and Magic',
+    'Sewers': 'Cold, Fire, Poison, and Magic',
+    'Spider Forest and Spider Cavern': 'Cold, Fire, Lightning, and Poison',
+    'Stony Field': 'Cold, Fire, Lightning, and Poison',
+    'Tal Rasha\'s Tombs and Tal Rasha\'s Chamber': 'Cold, Fire, Lightning, Poison, and Magic',
+    'The Forgotten Tower': 'Fire, Lightning, and Physical',
+    'The Pit': 'Cold and Fire',
+    'Travincal': 'Cold, Fire, Lightning, and Poison',
+    'Tristram': 'Fire, Lightning, and Poison',
+    'Worldstone Keep, Throne of Destruction, and Worldstone Chamber': 'Cold, Fire, Lightning, Poison, Physical, and Magic'
+}
+
+scdict = {
+    'Ancient\'s Way and Icy Cellar': '1',
+    'Arcane Sanctuary': '9-12',
+    'Arreat Plateau': 'None',
+    'Blood Moor and Den of Evil': 'None',
+    'Bloody Foothills': 'None',
+    'Burial Grounds, The Crypt, and The Mausoleum': '2',
+    'Cathedral and Catacombs': 'None',
+    'Chaos Sanctuary': 'None',
+    'Cold Plains and The Cave': '1',
+    'Crystalline Passage and Frozen River': 'None',
+    'Dark Wood': 'None',
+    'Dry Hills and Halls of the Dead': 'None',
+    'Durance of Hate': 'None',
+    'Far Oasis': 'None',
+    'Flayer Jungle and Flayer Dungeon': 'None',
+    'Frigid Highlands': 'None',
+    'Glacial Trail': 'None',
+    'Jail': 'None',
+    'Kurast Bazaar, Ruined Temple, and Disused Fane': 'None',
+    'Kurast Sewers': '1',
+    'Lost City, Valley of Snakes, and Claw Viper Temple': 'None',
+    'Moo Moo Farm': 'None',
+    'Nihlathak\'s Temple, Halls of Anguish, Halls of Pain, and Halls of Vaught': '1',
+    'Outer Steppes and Plains of Despair': 'None',
+    'River of Flame and City of the Damned': 'None',
+    'Rocky Waste and Stony Tomb': '1',
+    'Sewers': 'None',
+    'Spider Forest and Spider Cavern': 'None',
+    'Stony Field': 'None',
+    'Tal Rasha\'s Tombs and Tal Rasha\'s Chamber': '6',
+    'The Forgotten Tower': 'None',
+    'The Pit': '1',
+    'Travincal': 'None',
+    'Tristram': 'None',
+    'Worldstone Keep, Throne of Destruction, and Worldstone Chamber': 'None'
+}
 
 #####################
 # End of Dictionary #
@@ -119,10 +271,18 @@ class D2RuneWizardClient():
         tz_status = D2RuneWizardClient.terror_zone()
         zone = tz_status.get("terrorZone").get("highestProbabilityZone").get("zone")
         pingid = tzdict.get(zone)
+        bp = bpdict.get(zone)
+        su = sudict.get(zone)
+        im = imdict.get(zone)
+        sc = scdict.get(zone)
 
         # build the message
         message = 'Current Terror Zone:\n'
         message += f'Zone: **{zone}** <@&{pingid}>\n'
+        message += f'Boss Packs: **{bp}**\n'
+        message += f'Super Uniques: **{su}**\n'
+        message += f'Immunities: **{im}**\n'
+        message += f'Sparkly Chests: **{sc}**\n'
         message += '> Data courtesy of D2RW'
 
         return message
