@@ -122,7 +122,7 @@ class D2RuneWizardClient():
 
         # build the message
         message = 'Current Terror Zone:\n'
-        message += f'Zone: **{tz_status.get("terrorZone").get("highestProbabilityZone").get("zone")}** ({tz_status.get("terrorZone").get("highestProbabilityZone").get("act")}) <@&{pingid}>\n'
+        message += f'Zone: **{zone}** <@&{pingid}>\n'
         message += '> Data courtesy of D2RW'
 
         return message
@@ -181,7 +181,7 @@ class DiscordClient(discord.Client):
         terror_zone = self.d2rw.terror_zone().get('terrorZone').get('highestProbabilityZone').get('zone')
 
         # if the terror zone changed since the last check, send a message to Discord
-        if terror_zone != self.d2rw.current_terror_zone:
+        if terror_zone and terror_zone != self.d2rw.current_terror_zone:
             print(f'Terror Zone changed from {self.d2rw.current_terror_zone} to {terror_zone}')
             tz_message = D2RuneWizardClient.terror_zone_message()
 
