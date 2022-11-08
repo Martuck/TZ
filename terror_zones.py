@@ -19,7 +19,43 @@ import discord
 ##################
 # Bot Dictionary #
 ##################
-tzdict = {'Blood Moor and Den of Evil': '1033399859039973457', 'Cold Plains and The Cave': '1033400167900123226', 'Burial Grounds, The Crypt, and The Mausoleum': '1033400209704755210', 'Stony Field': '1033400326205735014', 'Dark Wood': '1033400366630441060', 'The Forgotten Tower': '1033400469634170922', 'Jail': '1033400502798516355', 'Cathedral and Catacombs': '1033400591436754954', 'The Pit': '1033400658008735775', 'Tristram': '1033400671493423126', 'Moo Moo Farm': '1033400750656729088', 'Sewers': '1033400906227654829', 'Rocky Waste and Stony Tomb': '1033400908308041870', 'Dry Hills and Halls of the Dead': '1033400910669426828', 'Far Oasis': '1033400912795943003', 'Lost City, Valley of Snakes, and Claw Viper Temple': '1033400914867933244', 'Arcane Sanctuary': '1033400916650491915', "Tal Rasha's Tombs and Tal Rasha's Chamber": "1033400918974152904", 'Spider Forest and Spider Cavern': '1033401329814601748', 'Flayer Jungle and Flayer Dungeon': '1033401331848859758', 'Kurast Bazaar, Ruined Temple, and Disused Fane': '1033401333912436767', 'Kurast Sewers': '1033401336399679498', 'Travincal': '1033401338425528383', 'Durance of Hate': '1033401340682055680', 'Outer Steppes and Plains of Despair': '1033401688201101402', 'River of Flame and City of the Damned': '1033401690436665425', 'Chaos Sanctuary': '1033401692491874334', 'Bloody Foothills': '1033401900269326396', 'Frigid Highlands': '1033401902186119259', 'Glacial Trail': '1033401904371335168', 'Crystalline Passage and Frozen River': '1033401906736922624', 'Arreat Plateau': '1033401910767669308', "Nihlathak's Temple, Halls of Anguish, Halls of Pain, and Halls of Vaught": "1033401913309417583", "Ancient's Way and Icy Cellar": "1033401915377188935", 'Worldstone Keep, Throne of Destruction, and Worldstone Chamber': '1033401917591781527'}
+tzdict = {
+    'Ancient\'s Way and Icy Cellar': '1033401915377188935',
+    'Arcane Sanctuary': '1033400916650491915',
+    'Arreat Plateau': '1033401910767669308',
+    'Blood Moor and Den of Evil': '1033399859039973457',
+    'Bloody Foothills': '1033401900269326396',
+    'Burial Grounds, The Crypt, and The Mausoleum': '1033400209704755210',
+    'Cathedral and Catacombs': '1033400591436754954',
+    'Chaos Sanctuary': '1033401692491874334',
+    'Cold Plains and The Cave': '1033400167900123226',
+    'Crystalline Passage and Frozen River': '1033401906736922624',
+    'Dark Wood': '1033400366630441060',
+    'Dry Hills and Halls of the Dead': '1033400910669426828',
+    'Durance of Hate': '1033401340682055680',
+    'Far Oasis': '1033400912795943003',
+    'Flayer Jungle and Flayer Dungeon': '1033401331848859758',
+    'Frigid Highlands': '1033401902186119259',
+    'Glacial Trail': '1033401904371335168',
+    'Jail': '1033400502798516355',
+    'Kurast Bazaar, Ruined Temple, and Disused Fane': '1033401333912436767',
+    'Kurast Sewers': '1033401336399679498',
+    'Lost City, Valley of Snakes, and Claw Viper Temple': '1033400914867933244',
+    'Moo Moo Farm': '1033400750656729088',
+    'Nihlathak\'s Temple, Halls of Anguish, Halls of Pain, and Halls of Vaught': '1033401913309417583',
+    'Outer Steppes and Plains of Despair': '1033401688201101402',
+    'River of Flame and City of the Damned': '1033401690436665425',
+    'Rocky Waste and Stony Tomb': '1033400908308041870',
+    'Sewers': '1033400906227654829',
+    'Spider Forest and Spider Cavern': '1033401329814601748',
+    'Stony Field': '1033400326205735014',
+    'Tal Rasha\'s Tombs and Tal Rasha\'s Chamber': '1033400918974152904',
+    'The Forgotten Tower': '1033400469634170922',
+    'The Pit': '1033400658008735775',
+    'Travincal': '1033401338425528383',
+    'Tristram': '1033400671493423126',
+    'Worldstone Keep, Throne of Destruction, and Worldstone Chamber': '1033401917591781527'
+ }
 
 #####################
 # End of Dictionary #
