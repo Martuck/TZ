@@ -122,7 +122,9 @@ class D2RuneWizardClient():
 
         # build the message
         message = 'Current Terror Zone:\n'
-        message += f'Zone: **{zone}** <@&{pingid}>\n'
+        message += f'Zone: **{zone}**\n'
+        if pingid:
+            message += f'<@&{pingid}>\n'
         message += '> Data courtesy of D2RW'
 
         return message
