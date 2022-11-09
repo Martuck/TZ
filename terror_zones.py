@@ -105,19 +105,19 @@ class D2RuneWizardClient():
             response = get(url, params=params, timeout=10)
 
             response.raise_for_status()
-            return response.json()
+            return response.json().get('terror_zone', {})
         except Exception as err:
             print(f'[D2RW.terror_zone] API Error: {err}')
-            return None
+            return {}
 
     @staticmethod
     def terror_zone_message(discord_client):
         """
         Returns a formatted message of the current terror zone status.
         """
-        # get the currently reported terror zone
+        # get the currently reported TZ status
         tz_status = D2RuneWizardClient.terror_zone()
-        zone = tz_status.get("terrorZone").get("highestProbabilityZone").get("zone")
+        zone = tz_status.get('highestProbabilityZone', {}).get('zone')
         pingid = tzdict.get(zone)
 
         # build the message
@@ -190,7 +190,7 @@ class DiscordClient(discord.Client):
         If the current status is different from the last known status, a message is sent to Discord.
         """
         # print('>> Checking Terror Zone status...')
-        terror_zone = self.d2rw.terror_zone().get('terrorZone').get('highestProbabilityZone').get('zone')
+        terror_zone = self.d2rw.terror_zone().get('highestProbabilityZone', {}).get('zone')
 
         # if the terror zone changed since the last check, send a message to Discord
         if terror_zone and terror_zone != self.d2rw.current_terror_zone:
@@ -212,7 +212,7 @@ class DiscordClient(discord.Client):
 
         # get the current terror zone
         try:
-            terror_zone = self.d2rw.terror_zone().get('terrorZone').get('highestProbabilityZone').get('zone')
+            terror_zone = self.d2rw.terror_zone().get('highestProbabilityZone', {}).get('zone')
         except Exception as err:
             print(f'Unable to set the current terror zone at startup: {err}')
             return
