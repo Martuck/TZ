@@ -105,7 +105,7 @@ class D2RuneWizardClient():
             response = get(url, params=params, timeout=10)
 
             response.raise_for_status()
-            return response.json().get('terror_zone', {})
+            return response.json().get('terrorZone', {})
         except Exception as err:
             print(f'[D2RW.terror_zone] API Error: {err}')
             return {}
