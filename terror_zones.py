@@ -306,7 +306,7 @@ class D2RuneWizardClient():
         sparkly_chests = tzdict.get(zone).get('sparkly_chests')
 
         # build the message
-        message = message = 'Current Terror Zone: **{zone}**\n\n'
+        message = f'Current Terror Zone: **{zone}**\n\n'
         message += f'Super Uniques: **{super_uniques}**\n'
         message += f'Boss Packs:**{boss_packs}**\n'
         message += f'Immunities: **{immunities}**\n'
