@@ -36,13 +36,12 @@ TZ_D2RW_TOKEN = environ.get('TZ_D2RW_TOKEN')
 # Emoji Mapping, currently uses default Discord Emoji.
 # You can use custom emoji by using the emoji ID, e.g. :emoji_name:
 emoji_map = {
-    'Fire': ':fire:',
     'Cold': ':snowflake:',
+    'Fire': ':fire:',
     'Lightning': ':zap:',
     'Magic': ':magic_wand:',
-    'Poison': ':nauseated_face:',
     'Physical': ':axe:',
-    # 'None': ':white_check_mark:',
+    'Poison': ':nauseated_face:',
 }
 
 ########################
