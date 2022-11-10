@@ -20,42 +20,252 @@ import discord
 # Bot Dictionary #
 ##################
 tzdict = {
-    'Ancient\'s Way and Icy Cellar': '1033401915377188935',
-    'Arcane Sanctuary': '1033400916650491915',
-    'Arreat Plateau': '1033401910767669308',
-    'Blood Moor and Den of Evil': '1033399859039973457',
-    'Bloody Foothills': '1033401900269326396',
-    'Burial Grounds, The Crypt, and The Mausoleum': '1033400209704755210',
-    'Cathedral and Catacombs': '1033400591436754954',
-    'Chaos Sanctuary': '1033401692491874334',
-    'Cold Plains and The Cave': '1033400167900123226',
-    'Crystalline Passage and Frozen River': '1033401906736922624',
-    'Dark Wood': '1033400366630441060',
-    'Dry Hills and Halls of the Dead': '1033400910669426828',
-    'Durance of Hate': '1033401340682055680',
-    'Far Oasis': '1033400912795943003',
-    'Flayer Jungle and Flayer Dungeon': '1033401331848859758',
-    'Frigid Highlands': '1033401902186119259',
-    'Glacial Trail': '1033401904371335168',
-    'Jail': '1033400502798516355',
-    'Kurast Bazaar, Ruined Temple, and Disused Fane': '1033401333912436767',
-    'Kurast Sewers': '1033401336399679498',
-    'Lost City, Valley of Snakes, and Claw Viper Temple': '1033400914867933244',
-    'Moo Moo Farm': '1033400750656729088',
-    'Nihlathak\'s Temple, Halls of Anguish, Halls of Pain, and Halls of Vaught': '1033401913309417583',
-    'Outer Steppes and Plains of Despair': '1033401688201101402',
-    'River of Flame and City of the Damned': '1033401690436665425',
-    'Rocky Waste and Stony Tomb': '1033400908308041870',
-    'Sewers': '1033400906227654829',
-    'Spider Forest and Spider Cavern': '1033401329814601748',
-    'Stony Field': '1033400326205735014',
-    'Tal Rasha\'s Tombs and Tal Rasha\'s Chamber': '1033400918974152904',
-    'The Forgotten Tower': '1033400469634170922',
-    'The Pit': '1033400658008735775',
-    'Travincal': '1033401338425528383',
-    'Tristram': '1033400671493423126',
-    'Worldstone Keep, Throne of Destruction, and Worldstone Chamber': '1033401917591781527'
- }
+	'Ancient\'s Way and Icy Cellar': {
+        'pingid': '1033401915377188935',
+        'boss_packs': '6-8',
+        'super_uniques': 'Snapchip Shatter',
+        'immunities': 'Cold, Lightning, Poison, and Physical',
+        'sparkly_chests': '1',
+    },
+    'Arcane Sanctuary': {
+		'pingid': '1033400916650491915',
+		'boss_packs': '7-9',
+		'super_uniques': 'The Summoner',
+		'immunities': 'Cold, Fire, Lightning, Poison, and Physical',
+		'sparkly_chests': 'None',
+	},
+    'Arreat Plateau': {
+		'pingid': '1033401910767669308',
+		'boss_packs': '9-11',
+		'super_uniques': 'Thresh Socket',
+		'immunities': 'Cold, Fire, Lightning, and Poison',
+		'sparkly_chests': 'None',
+	},
+    'Blood Moor and Den of Evil': {
+		'pingid': '1033399859039973457',
+		'boss_packs': '7-9',
+		'super_uniques': 'Corpsefire',
+		'immunities': 'Cold and Fire',
+		'sparkly_chests': 'None',
+	},
+    'Bloody Foothills': {
+		'pingid': '1033401900269326396',
+		'boss_packs': '4-6',
+		'super_uniques': 'Dac Farren and Shenk The Overseer',
+		'immunities': 'Cold, Fire, Lightning, and Poison',
+		'sparkly_chests': 'None',
+	},
+    'Burial Grounds, The Crypt, and The Mausoleum': {
+		'pingid': '1033400209704755210',
+		'boss_packs': '8-10',
+		'super_uniques': 'Blood Raven and Bonebreaker',
+		'immunities': 'Lightning',
+		'sparkly_chests': '2',
+	},
+    'Cathedral and Catacombs': {
+		'pingid': '1033400591436754954',
+		'boss_packs': '27-35',
+		'super_uniques': 'Bone Ash and Andariel',
+		'immunities': 'Cold, Fire, Lightning, and Physical',
+		'sparkly_chests': 'None',
+	},
+    'Chaos Sanctuary': {
+		'pingid': '1033401692491874334',
+		'boss_packs': '6-7',
+		'super_uniques': 'Grand Vizier of Chaos, Infector of Souls, Lord De Seis, and Diablo',
+		'immunities': 'Cold, Fire, and Lightning',
+		'sparkly_chests': 'None',
+	},
+    'Cold Plains and The Cave': {
+		'pingid': '1033400167900123226',
+		'boss_packs': '13-16',
+		'super_uniques': 'Bishibosh and Coldcrow',
+		'immunities': 'Cold, Fire, and Lightning',
+		'sparkly_chests': '1',
+	},
+    'Crystalline Passage and Frozen River': {
+		'pingid': '1033401906736922624',
+		'boss_packs': '13-17',
+		'super_uniques': 'Frozenstein',
+		'immunities': 'Cold, Fire, Lightning, Poison, Physical, and Magic',
+		'sparkly_chests': 'None',
+	},
+    'Dark Wood': {
+		'pingid': '1033400366630441060',
+		'boss_packs': '7-9',
+		'super_uniques': 'Treehead Woodfist',
+		'immunities': 'Cold, Fire, and Poison',
+		'sparkly_chests': 'None',
+	},
+    'Dry Hills and Halls of the Dead': {
+		'pingid': '1033400910669426828',
+		'boss_packs': '20-27',
+		'super_uniques': 'Bloodwitch the Wild',
+		'immunities': 'Cold, Fire, Lightning, and Poison',
+		'sparkly_chests': 'None',
+	},
+    'Durance of Hate': {
+		'pingid': '1033401340682055680',
+		'boss_packs': '15-21',
+		'super_uniques': 'Wyand Voidbringer, Maffer Dragonhand, Bremm Sparkfist, and Mephisto',
+		'immunities': 'Cold, Fire, Lightning, and Poison',
+		'sparkly_chests': 'None',
+	},
+    'Far Oasis': {
+		'pingid': '1033400912795943003',
+		'boss_packs': '7-9',
+		'super_uniques': 'Beetleburst',
+		'immunities': 'Lightning, Poison, and Physical',
+		'sparkly_chests': 'None',
+	},
+    'Flayer Jungle and Flayer Dungeon': {
+		'pingid': '1033401331848859758',
+		'boss_packs': '22-29',
+		'super_uniques': 'Stormtree and Witch Doctor Endugu',
+		'immunities': 'Cold, Fire, Lightning, Poison, Physical, and Magic',
+		'sparkly_chests': 'None',
+	},
+    'Frigid Highlands': {
+		'pingid': '1033401902186119259',
+		'boss_packs': '9-11',
+		'super_uniques': 'Eldritch the Rectifier, Sharptooth Slayer, and Eyeback the Unleashed',
+		'immunities': 'Cold, Fire, Lightning, Poison, Physical, and Magic',
+		'sparkly_chests': 'None',
+	},
+    'Glacial Trail': {
+		'pingid': '1033401904371335168',
+		'boss_packs': '7-9',
+		'super_uniques': 'Bonesaw Breaker',
+		'immunities': 'Cold, Fire, Lightning, Poison, and Physical',
+		'sparkly_chests': 'None',
+	},
+    'Jail': {
+		'pingid': '1033400502798516355',
+		'boss_packs': '18-24',
+		'super_uniques': 'Pitspawn Fouldog',
+		'immunities': 'Cold, Fire, Poison, and Physical',
+		'sparkly_chests': 'None',
+	},
+    'Kurast Bazaar, Ruined Temple, and Disused Fane': {
+		'pingid': '1033401333912436767',
+		'boss_packs': '15-17',
+		'super_uniques': 'Battlemaid Sarina',
+		'immunities': 'Cold, Fire, Lightning, Poison, Physical, and Magic',
+		'sparkly_chests': 'None',
+	},
+    'Kurast Sewers': {
+		'pingid': '1033401336399679498',
+		'boss_packs': '12-14',
+		'super_uniques': 'Icehawk Riftwing',
+		'immunities': 'Cold, Lightning, Poison, and Magic',
+		'sparkly_chests': '1',
+	},
+    'Lost City, Valley of Snakes, and Claw Viper Temple': {
+		'pingid': '1033400914867933244',
+		'boss_packs': '21-28',
+		'super_uniques': 'Dark Elder and Fangskin',
+		'immunities': 'Cold, Fire, Lightning, Poison, and Magic',
+		'sparkly_chests': 'None',
+	},
+    'Moo Moo Farm': {
+		'pingid': '1033400750656729088',
+		'boss_packs': '6-8',
+		'super_uniques': 'The Cow King',
+		'immunities': 'None',
+		'sparkly_chests': 'None',
+	},
+    'Nihlathak\'s Temple, Halls of Anguish, Halls of Pain, and Halls of Vaught': {
+		'pingid': '1033401913309417583',
+		'boss_packs': '12-14',
+		'super_uniques': 'Pindleskin and Nihlathak',
+		'immunities': 'Cold, Fire, Lightning, Poison, Physical, and Magic',
+		'sparkly_chests': 'None',
+	},
+    'Outer Steppes and Plains of Despair': {
+		'pingid': '1033401688201101402',
+		'boss_packs': '16-20',
+		'super_uniques': 'Izual',
+		'immunities': 'Cold, Fire, Lightning, and Poison',
+		'sparkly_chests': 'None',
+	},
+    'River of Flame and City of the Damned': {
+		'pingid': '1033401690436665425',
+		'boss_packs': '14-17',
+		'super_uniques': 'Hephasto The Armorer',
+		'immunities': 'Cold, Fire, Lightning, and Poison',
+		'sparkly_chests': 'None',
+	},
+    'Rocky Waste and Stony Tomb': {
+		'pingid': '1033400908308041870',
+		'boss_packs': '17-23',
+		'super_uniques': 'Creeping Feature',
+		'immunities': 'Cold, Fire, Lightning, Poison, and Magic',
+		'sparkly_chests': '1',
+	},
+    'Sewers': {
+		'pingid': '1033400906227654829',
+		'boss_packs': '18-24',
+		'super_uniques': 'Radament',
+		'immunities': 'Cold, Fire, Poison, and Magic',
+		'sparkly_chests': 'None',
+	},
+    'Spider Forest and Spider Cavern': {
+		'pingid': '1033401329814601748',
+		'boss_packs': '14-20',
+		'super_uniques': 'Sszark The Burning',
+		'immunities': 'Cold, Fire, Lightning, and Poison',
+		'sparkly_chests': 'None',
+	},
+    'Stony Field': {
+		'pingid': '1033400326205735014',
+		'boss_packs': '7-9',
+		'super_uniques': 'Rakanishu',
+		'immunities': 'Cold, Fire, Lightning, and Poison',
+		'sparkly_chests': 'None',
+	},
+    'Tal Rasha\'s Tombs and Tal Rasha\'s Chamber': {
+		'pingid': '1033400918974152904',
+		'boss_packs': '49-63',
+		'super_uniques': 'Ancient Kaa The Soulless and Duriel',
+		'immunities': 'Cold, Fire, Lightning, Poison, and Magic',
+		'sparkly_chests': '6',
+	},
+    'The Forgotten Tower': {
+		'pingid': '1033400469634170922',
+		'boss_packs': '15-20',
+		'super_uniques': 'The Countess',
+		'immunities': 'Fire, Lightning, and Physical',
+		'sparkly_chests': 'None',
+	},
+    'The Pit': {
+		'pingid': '1033400658008735775',
+		'boss_packs': '8-11',
+		'super_uniques': 'None',
+		'immunities': 'Cold and Fire',
+		'sparkly_chests': '1',
+	},
+    'Travincal': {
+		'pingid': '1033401338425528383',
+		'boss_packs': '6-8',
+		'super_uniques': 'Ismail Vilehand, Toorc Icefist, and Geleb Flamefinger',
+		'immunities': 'Cold, Fire, Lightning, and Poison',
+		'sparkly_chests': 'None',
+	},
+    'Tristram': {
+		'pingid': '1033400671493423126',
+		'boss_packs': '5-6',
+		'super_uniques': 'Griswold',
+		'immunities': 'Fire, Lightning, and Poison',
+		'sparkly_chests': 'None',
+	},
+    'Worldstone Keep, Throne of Destruction, and Worldstone Chamber': {
+		'pingid': '1033401917591781527'
+		'boss_packs': '22-29',
+		'super_uniques': 'Colenzo The Annihilator, Achmel The Cursed, Bartuc The Bloody, Ventar The Unholy, Lister The Tormentor, and Baal',
+		'immunities': 'Cold, Fire, Lightning, Poison, Physical, and Magic',
+		'sparkly_chests': 'None',
+	},
+}
 
 #####################
 # End of Dictionary #
@@ -118,11 +328,19 @@ class D2RuneWizardClient():
         # get the currently reported TZ status
         tz_status = D2RuneWizardClient.terror_zone()
         zone = tz_status.get('highestProbabilityZone', {}).get('zone')
-        pingid = tzdict.get(zone)
+        pingid = tzdict.get(zone).get('pingid')
+        boss_packs = tzdict.get(zone).get('boss_packs')
+        super_uniques = tzdict.get(zone).get('super_uniques')
+        immunities = tzdict.get(zone).get('immunities')
+        sparkly_chests = tzdict.get(zone).get('sparkly_chests')
 
         # build the message
         message = 'Current Terror Zone:\n'
         message += f'Zone: **{zone}**\n'
+        message += f'Super Uniques: **{super_uniques}**\n'
+        message += f'Boss Packs: **{boss_packs}**\n'
+        message += f'Immunities: **{immunities}**\n'
+        message += f'Sparkly Chests: **{sparkly_chests}**\n'
 
         # ping a discord role only if it is defined in tzdict
         if pingid:
@@ -135,7 +353,7 @@ class D2RuneWizardClient():
             else:
                 message += f'<@&{pingid}>\n'
 
-        message += '> Data courtesy of D2RW'
+        message += '> Data courtesy of https://d2runewizard.com/'
 
         return message
 
