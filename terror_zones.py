@@ -307,10 +307,10 @@ class D2RuneWizardClient():
 
         # build the message
         message = f'Current Terror Zone: **{zone}**\n\n'
-        message += f'Super Uniques: **{super_uniques}**\n'
-        message += f'Boss Packs: **{boss_packs}**\n'
-        message += f'Immunities: **{immunities}**\n'
-        message += f'Sparkly Chests: **{sparkly_chests}**\n'
+        message += f'Super Uniques: {super_uniques}\n'
+        message += f'Boss Packs: {boss_packs}\n'
+        message += f'Immunities: {immunities}\n'
+        message += f'Sparkly Chests: {sparkly_chests}\n'
 
         # ping a discord role only if it is defined in tzdict
         if pingid:
