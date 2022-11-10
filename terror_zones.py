@@ -105,24 +105,36 @@ class D2RuneWizardClient():
             response = get(url, params=params, timeout=10)
 
             response.raise_for_status()
-            return response.json()
+            return response.json().get('terrorZone', {})
         except Exception as err:
             print(f'[D2RW.terror_zone] API Error: {err}')
-            return None
+            return {}
 
     @staticmethod
-    def terror_zone_message():
+    def terror_zone_message(discord_client):
         """
         Returns a formatted message of the current terror zone status.
         """
         # get the currently reported TZ status
         tz_status = D2RuneWizardClient.terror_zone()
-        zone = tz_status.get("terrorZone").get("highestProbabilityZone").get("zone")
+        zone = tz_status.get('highestProbabilityZone', {}).get('zone')
         pingid = tzdict.get(zone)
 
         # build the message
         message = 'Current Terror Zone:\n'
-        message += f'Zone: **{zone}** <@&{pingid}>\n'
+        message += f'Zone: **{zone}**\n'
+
+        # ping a discord role only if it is defined in tzdict
+        if pingid:
+            # verify that the role exists for this server by getting the alert channel,
+            # getting the guild (server) that channel belongs to, and then getting
+            # the role from that guild.
+            role = discord_client.get_channel(TZ_DISCORD_CHANNEL_ID).guild.get_role(int(pingid))
+            if not role:
+                print(f'[D2RW.terror_zone_message] Warning: Role {pingid} does not exist on this server.')
+            else:
+                message += f'<@&{pingid}>\n'
+
         message += '> Data courtesy of D2RW'
 
         return message
@@ -166,7 +178,7 @@ class DiscordClient(discord.Client):
         """
         if message.content.startswith('.tz') or message.content.startswith('!tz'):
             print(f'Responding to TZ chatop from {message.author}')
-            current_status = D2RuneWizardClient.terror_zone_message()
+            current_status = D2RuneWizardClient.terror_zone_message(self)
 
             channel = self.get_channel(message.channel.id)
             await channel.send(current_status)
@@ -178,12 +190,12 @@ class DiscordClient(discord.Client):
         If the current status is different from the last known status, a message is sent to Discord.
         """
         # print('>> Checking Terror Zone status...')
-        terror_zone = self.d2rw.terror_zone().get('terrorZone').get('highestProbabilityZone').get('zone')
+        terror_zone = self.d2rw.terror_zone().get('highestProbabilityZone', {}).get('zone')
 
         # if the terror zone changed since the last check, send a message to Discord
         if terror_zone and terror_zone != self.d2rw.current_terror_zone:
             print(f'Terror Zone changed from {self.d2rw.current_terror_zone} to {terror_zone}')
-            tz_message = D2RuneWizardClient.terror_zone_message()
+            tz_message = D2RuneWizardClient.terror_zone_message(self)
 
             channel = self.get_channel(TZ_DISCORD_CHANNEL_ID)
             await channel.send(tz_message)
@@ -200,7 +212,7 @@ class DiscordClient(discord.Client):
 
         # get the current terror zone
         try:
-            terror_zone = self.d2rw.terror_zone().get('terrorZone').get('highestProbabilityZone').get('zone')
+            terror_zone = self.d2rw.terror_zone().get('highestProbabilityZone', {}).get('zone')
         except Exception as err:
             print(f'Unable to set the current terror zone at startup: {err}')
             return
