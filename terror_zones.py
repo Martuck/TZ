@@ -20,7 +20,7 @@ import discord
 # Bot Dictionary #
 ##################
 tzdict = {
-	'Ancient\'s Way and Icy Cellar': {
+    'Ancient\'s Way and Icy Cellar': {
         'pingid': '1033401915377188935',
         'boss_packs': '6-8',
         'super_uniques': 'Snapchip Shatter',
@@ -335,12 +335,13 @@ class D2RuneWizardClient():
         sparkly_chests = tzdict.get(zone).get('sparkly_chests')
 
         # build the message
-        message = 'Current Terror Zone:\n'
-        message += f'Zone: **{zone}**\n'
+        message = message = 'Current Terror Zone: **{zone}**\n\n'
         message += f'Super Uniques: **{super_uniques}**\n'
-        message += f'Boss Packs: **{boss_packs}**\n'
+        message += f'Boss Packs:**{boss_packs}**\n'
         message += f'Immunities: **{immunities}**\n'
-        message += f'Sparkly Chests: **{sparkly_chests}**\n'
+        message += f'Sparkly Chests: **{sparkly_chests}**'
+        message += f'{pingid}\n\n'
+        message += '> Provided By: D2RW'
 
         # ping a discord role only if it is defined in tzdict
         if pingid:
