@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
 """
+A Discord Bot for tracking Diablo 2: Resurrected Terror Zones - https://github.com/Martuck/TZ
+Copyright (C) 2022 @Synse, @Martuck
+
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
+
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
+
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
@@ -31,13 +36,12 @@ TZ_D2RW_TOKEN = environ.get('TZ_D2RW_TOKEN')
 # Emoji Mapping, currently uses default Discord Emoji.
 # You can use custom emoji by using the emoji ID, e.g. :emoji_name:
 emoji_map = {
-    'Fire': ':fire:',
     'Cold': ':snowflake:',
+    'Fire': ':fire:',
     'Lightning': ':zap:',
     'Magic': ':magic_wand:',
-    'Poison': ':nauseated_face:',
     'Physical': ':axe:',
-    # 'None': ':white_check_mark:',
+    'Poison': ':nauseated_face:',
 }
 
 ########################
@@ -322,14 +326,12 @@ class D2RuneWizardClient():
         message = f'Current Terror Zone: **{zone}**\n\n'
         message += f'Super Uniques: {super_uniques}\n'
         message += f'Boss Packs: {boss_packs}\n'
-        #message += f'Immunities: {immunities}\n'
-        #message += f'Sparkly Chests: {sparkly_chests}\n'
 
         # Add emoji Immunities
         if immunities:
             immunities_emoji = ' '.join([emoji_map.get(i, i) for i in immunities])
             message += f'Immunities: {immunities_emoji}\n'
-        
+
         # Add Sparkly Chests if they exist
         if sparkly_chests:
             message += f'Sparkly Chests: {sparkly_chests}\n'
@@ -343,9 +345,9 @@ class D2RuneWizardClient():
             if not role:
                 print(f'[D2RW.terror_zone_message] Warning: Role {pingid} does not exist on this server.')
             else:
-                message += f'<@&{pingid}>\n\n'
+                message += f'<@&{pingid}>\n'
 
-        message += '> Data courtesy of d2runewizard.com'
+        message += '\n> Data courtesy of d2runewizard.com'
 
         return message
 
