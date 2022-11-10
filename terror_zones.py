@@ -16,6 +16,34 @@ from requests import get
 from discord.ext import tasks
 import discord
 
+#####################
+# Bot Configuration #
+#####################
+# Setting environment variables is preferred, but you can also edit the variables below.
+
+# Discord (Required)
+TZ_DISCORD_TOKEN = environ.get('TZ_DISCORD_TOKEN')
+TZ_DISCORD_CHANNEL_ID = int(environ.get('TZ_DISCORD_CHANNEL_ID', 0))
+
+# D2RuneWizard API (Required)
+TZ_D2RW_TOKEN = environ.get('TZ_D2RW_TOKEN')
+
+# Emoji Mapping, currently uses default Discord Emoji.
+# You can use custom emoji by using the emoji ID, e.g. :emoji_name:
+emoji_map = {
+    'Fire': ':fire:',
+    'Cold': ':snowflake:',
+    'Lightning': ':zap:',
+    'Magic': ':magic_wand:',
+    'Poison': ':nauseated_face:',
+    'Physical': ':axe:',
+    # 'None': ':white_check_mark:',
+}
+
+########################
+# End of configuration #
+########################
+
 ##################
 # Bot Dictionary #
 ##################
@@ -242,21 +270,6 @@ tzdict = {
 # End of Dictionary #
 #####################
 
-#####################
-# Bot Configuration #
-#####################
-# Setting environment variables is preferred, but you can also edit the variables below.
-
-# Discord (Required)
-TZ_DISCORD_TOKEN = environ.get('TZ_DISCORD_TOKEN')
-TZ_DISCORD_CHANNEL_ID = int(environ.get('TZ_DISCORD_CHANNEL_ID', 0))
-
-# D2RuneWizard API (Required)
-TZ_D2RW_TOKEN = environ.get('TZ_D2RW_TOKEN')
-
-########################
-# End of configuration #
-########################
 __version__ = '0.1'
 
 # TZ_DISCORD_TOKEN, TZ_D2RW_TOKEN, and TZ_DISCORD_CHANNEL_ID are required
@@ -309,8 +322,17 @@ class D2RuneWizardClient():
         message = f'Current Terror Zone: **{zone}**\n\n'
         message += f'Super Uniques: {super_uniques}\n'
         message += f'Boss Packs: {boss_packs}\n'
-        message += f'Immunities: {immunities}\n'
-        message += f'Sparkly Chests: {sparkly_chests}\n'
+        #message += f'Immunities: {immunities}\n'
+        #message += f'Sparkly Chests: {sparkly_chests}\n'
+
+        # Add emoji Immunities
+        if immunities:
+            immunities_emoji = ' '.join([emoji_map.get(i, i) for i in immunities])
+            message += f'Immunities: {immunities_emoji}\n'
+        
+        # Add Sparkly Chests if they exist
+        if sparkly_chests:
+            message += f'Sparkly Chests: {sparkly_chests}\n'
 
         # ping a discord role only if it is defined in tzdict
         if pingid:
