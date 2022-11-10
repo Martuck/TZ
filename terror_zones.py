@@ -231,7 +231,7 @@ tzdict = {
         'immunities': ['Fire', 'Lightning', 'Poison'],
     },
     'Worldstone Keep, Throne of Destruction, and Worldstone Chamber': {
-        'pingid': '1033401917591781527'
+        'pingid': '1033401917591781527',
         'boss_packs': '22-29',
         'super_uniques': 'Colenzo The Annihilator, Achmel The Cursed, Bartuc The Bloody, Ventar The Unholy, Lister The Tormentor, and Baal',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
