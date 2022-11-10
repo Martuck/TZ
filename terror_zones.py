@@ -326,14 +326,12 @@ class D2RuneWizardClient():
         message = f'Current Terror Zone: **{zone}**\n\n'
         message += f'Super Uniques: {super_uniques}\n'
         message += f'Boss Packs: {boss_packs}\n'
-        #message += f'Immunities: {immunities}\n'
-        #message += f'Sparkly Chests: {sparkly_chests}\n'
 
         # Add emoji Immunities
         if immunities:
             immunities_emoji = ' '.join([emoji_map.get(i, i) for i in immunities])
             message += f'Immunities: {immunities_emoji}\n'
-        
+
         # Add Sparkly Chests if they exist
         if sparkly_chests:
             message += f'Sparkly Chests: {sparkly_chests}\n'
