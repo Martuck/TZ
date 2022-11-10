@@ -345,9 +345,9 @@ class D2RuneWizardClient():
             if not role:
                 print(f'[D2RW.terror_zone_message] Warning: Role {pingid} does not exist on this server.')
             else:
-                message += f'<@&{pingid}>\n\n'
+                message += f'<@&{pingid}>\n'
 
-        message += '> Data courtesy of d2runewizard.com'
+        message += '\n> Data courtesy of d2runewizard.com'
 
         return message
 
