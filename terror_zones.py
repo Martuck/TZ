@@ -327,7 +327,8 @@ class D2RuneWizardClient():
 
         # Add emoji Immunities
         if immunities:
-            message += f'Immunities: {[emoji_map.get(i) for i in immunities]}\n'
+            immunities_emoji = ' '.join([emoji_map.get(i, i) for i in immunities])
+            message += f'Immunities: {immunities_emoji}\n'
         
         # Add Sparkly Chests if they exist
         if sparkly_chests:
