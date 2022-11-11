@@ -20,6 +20,7 @@ from os import environ
 from requests import get
 from discord.ext import tasks
 import discord
+from config import *
 
 #####################
 # Bot Configuration #
@@ -316,7 +317,7 @@ class D2RuneWizardClient():
         # get the currently reported TZ status
         tz_status = D2RuneWizardClient.terror_zone()
         zone = tz_status.get('highestProbabilityZone', {}).get('zone')
-        pingid = tzdict.get(zone).get('pingid')
+        pingid = roles.get(zone)
         boss_packs = tzdict.get(zone).get('boss_packs')
         super_uniques = tzdict.get(zone).get('super_uniques')
         immunities = tzdict.get(zone).get('immunities')
@@ -341,11 +342,12 @@ class D2RuneWizardClient():
             # verify that the role exists for this server by getting the alert channel,
             # getting the guild (server) that channel belongs to, and then getting
             # the role from that guild.
+            pings = ''.join([roles.get(i, i) for i in pingid])
             role = discord_client.get_channel(TZ_DISCORD_CHANNEL_ID).guild.get_role(int(pingid))
             if not role:
                 print(f'[D2RW.terror_zone_message] Warning: Role {pingid} does not exist on this server.')
             else:
-                message += f'<@&{pingid}>\n'
+                message += f'<@&{pings}>\n'
 
         message += '\n> Data courtesy of d2runewizard.com'
 
