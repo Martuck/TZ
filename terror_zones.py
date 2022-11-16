@@ -16,11 +16,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-from os import environ
+from os import environ, path
 from requests import get
 from discord.ext import tasks
 import discord
-from config import *
 
 #####################
 # Bot Configuration #
@@ -239,7 +238,6 @@ tzdict = {
 #####################
 # End of Dictionary #
 #####################
-
 __version__ = '0.1'
 
 # TZ_DISCORD_TOKEN, TZ_D2RW_TOKEN, and TZ_DISCORD_CHANNEL_ID are required
@@ -253,8 +251,34 @@ class D2RuneWizardClient():
     Interacts with the d2runewizard.com terror zone API and tracks the current terror zone.
     """
     def __init__(self):
-        # tracks the current terror zone
-        self.current_terror_zone = None
+        self.current_terror_zone = None  # tracks the current terror zone
+        self.emoji = emoji_map  # emoji to represent immunities
+        self.roles = {}  # roles to ping for each terror zone
+
+    def load_config(self):
+        """
+        Loads customizations from config.py.
+        """
+        # if config.py exists, import emoji and roles
+        if path.exists('config.py'):
+            print('Custom configuration (config.py) found. Importing...')
+
+            # try to import custom emoji
+            try:
+                from config import emoji
+                print('Custom Eomji imported')  # TODO: actually do this
+            except Exception as ex:
+                print(f'Error: Unable to import custom emoji. {ex}')
+
+            # try to import roles to ping
+            try:
+                from config import roles
+                print('Roles to ping imported.')  # TODO: actually do this
+            except Exception as ex:
+                print(f'Error: Unable to import roles to ping. {ex}')
+        else:
+            print('No configuration file (config.py) found. Default emoji will be used and no roles will be pinged.')
+
 
     @staticmethod
     def terror_zone():
