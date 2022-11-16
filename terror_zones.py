@@ -252,33 +252,45 @@ class D2RuneWizardClient():
     """
     def __init__(self):
         self.current_terror_zone = None  # tracks the current terror zone
-        self.emoji = emoji_map  # emoji to represent immunities
-        self.roles = {}  # roles to ping for each terror zone
 
     def load_config(self):
         """
         Loads customizations from config.py.
         """
+        # pylint: disable=import-outside-toplevel
         # if config.py exists, import emoji and roles
         if path.exists('config.py'):
-            print('Custom configuration (config.py) found. Importing...')
+            print('Importing configuration from config.py...')
 
             # try to import custom emoji
             try:
-                from config import emoji
-                print('Custom Eomji imported')  # TODO: actually do this
+                from config import emoji as custom_emoji
+
+                # merge config.emoji into emoji_map
+                for immunity, emoji in custom_emoji.items():
+                    if immunity in emoji_map:
+                        emoji_map[immunity] = emoji
+                        print(f'[D2RW.load_config] Custom {immunity} immunity emoji is "{emoji}"')
+                    else:
+                        print(f'[D2RW.load_config] Error: "{immunity}" is not a valid immunity.')
             except Exception as ex:
-                print(f'Error: Unable to import custom emoji. {ex}')
+                print(f'[D2RW.load_config] Error: Unable to import custom emoji. {ex}')
 
             # try to import roles to ping
             try:
-                from config import roles
-                print('Roles to ping imported.')  # TODO: actually do this
+                from config import roles as ping_roles
+
+                # merge config.roles into tzdict as pingid
+                for zone, role in ping_roles.items():
+                    if zone in tzdict:
+                        tzdict[zone]['pingid'] = role
+                        print(f'[D2RW.load_config] Role to ping for {zone} is "{role}"')
+                    else:
+                        print(f'[D2RW.load_config] Error: "{zone}" is not a valid terror zone.')
             except Exception as ex:
-                print(f'Error: Unable to import roles to ping. {ex}')
+                print(f'[D2RW.load_config] Error: Unable to import roles to ping. {ex}')
         else:
             print('No configuration file (config.py) found. Default emoji will be used and no roles will be pinged.')
-
 
     @staticmethod
     def terror_zone():
@@ -306,7 +318,7 @@ class D2RuneWizardClient():
         # get the currently reported TZ status
         tz_status = D2RuneWizardClient.terror_zone()
         zone = tz_status.get('highestProbabilityZone', {}).get('zone')
-        pingid = roles.get(zone)
+        pingid = tzdict.get(zone).get('pingid')
         boss_packs = tzdict.get(zone).get('boss_packs')
         super_uniques = tzdict.get(zone).get('super_uniques')
         immunities = tzdict.get(zone).get('immunities')
@@ -331,12 +343,11 @@ class D2RuneWizardClient():
             # verify that the role exists for this server by getting the alert channel,
             # getting the guild (server) that channel belongs to, and then getting
             # the role from that guild.
-            pings = ''.join([roles.get(i, i) for i in pingid])
             role = discord_client.get_channel(TZ_DISCORD_CHANNEL_ID).guild.get_role(int(pingid))
             if not role:
                 print(f'[D2RW.terror_zone_message] Warning: Role {pingid} does not exist on this server.')
             else:
-                message += f'<@&{pings}>\n'
+                message += f'<@&{pingid}>\n'
 
         message += '\n> Data courtesy of d2runewizard.com'
 
@@ -351,6 +362,7 @@ class DiscordClient(discord.Client):
         super().__init__(*args, **kwargs)
 
         self.d2rw = D2RuneWizardClient()
+        self.d2rw.load_config()  # load customizations from config.py
 
     async def on_ready(self):
         """
