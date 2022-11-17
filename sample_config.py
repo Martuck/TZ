@@ -5,7 +5,9 @@
 # Copy this file and name it config.py. The file must be in the same directory as terror_zones.py.
 # Remove the hashtag "#" from the front of which ones you want to use and add your emoji or role id in the proper sections.
 # If the hashtag is left then the bot will use Discord Default Emoji or will not send a Role Ping
-# Example Emoji: #'Cold': ':cold_immune:', becomes 'Cold': ':myCustomEmote:',
+# For a custom uploaded emoji use \:EmojiName: in chat to get the emoji ID from Discord, example return from command: <:EmojiName:123456789>
+# The <:EmojiName:123456789> is only required if using a custom uploaded emoji. Discord default emoji do not require this.
+# Example Emoji: #'Cold': ':cold_immune:', becomes 'Cold': '<:myCustomEmote:123456789>',
 # Example Roles: #'Chaos Sanctuary': '12345', becomes 'Chaos Sanctuary': '12345',
 
 ####################
