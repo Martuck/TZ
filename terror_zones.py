@@ -157,12 +157,6 @@ tzdict = {
         'super_uniques': 'Stormtree and Witch Doctor Endugu',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
     },
-    'Frigid Highlands': {
-        'pingid': 'ROLE ID',
-        'boss_packs': '9-11',
-        'super_uniques': 'Eldritch the Rectifier, Sharptooth Slayer, and Eyeback the Unleashed',
-        'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
-    },
     'Glacial Trail and Drifter Cavern': {
         'pingid': 'ROLE ID',
         'boss_packs': '13-17',
