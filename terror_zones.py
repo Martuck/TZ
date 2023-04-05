@@ -126,11 +126,12 @@ tzdict = {
         'super_uniques': 'Frozenstein',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
     },
-    'Dark Wood': {
+    'Dark Wood and Underground Passage': {
         'pingid': 'ROLE ID',
-        'boss_packs': '7-9',
+        'boss_packs': '16-22',
         'super_uniques': 'Treehead Woodfist',
-        'immunities': ['Cold', 'Fire', 'Poison'],
+        'immunities': ['Cold', 'Fire', 'Poison', 'Lightning'],
+        'sparkly_chests': '1',
     },
     'Dry Hills and Halls of the Dead': {
         'pingid': 'ROLE ID',
