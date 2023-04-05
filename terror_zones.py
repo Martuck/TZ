@@ -76,6 +76,12 @@ tzdict = {
         'super_uniques': 'Thresh Socket',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison'],
     },
+    'Black Marsh and The Hole': {
+        'pingid': 'ROLE ID',
+        'boss_packs': '15-20',
+        'immunities': ['Fire', 'Cold', 'Lighting', 'Poison'],
+        'sparkly_chests': '1',
+    }
     'Blood Moor and Den of Evil': {
         'pingid': 'ROLE ID',
         'boss_packs': '7-9',
