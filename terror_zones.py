@@ -52,6 +52,11 @@ emoji_map = {
 # Bot Dictionary #
 ##################
 tzdict = {
+    'Ancient Tunnels': {
+        'pingid': 'ROLE ID',
+        'boss_packs': '6-8',
+        'immunities': ['Fire', 'Poison', 'Lightning', 'Magic'],
+    },
     'Ancient\'s Way and Icy Cellar': {
         'pingid': 'ROLE ID',
         'boss_packs': '6-8',
