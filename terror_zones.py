@@ -163,9 +163,9 @@ tzdict = {
         'super_uniques': 'Eldritch the Rectifier, Sharptooth Slayer, and Eyeback the Unleashed',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
     },
-    'Glacial Trail': {
+    'Glacial Trail and Drifter Cavern': {
         'pingid': 'ROLE ID',
-        'boss_packs': '7-9',
+        'boss_packs': '13-17',
         'super_uniques': 'Bonesaw Breaker',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical'],
     },
