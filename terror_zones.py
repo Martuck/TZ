@@ -88,11 +88,11 @@ tzdict = {
         'super_uniques': 'Corpsefire',
         'immunities': ['Cold', 'Fire'],
     },
-    'Bloody Foothills': {
+    'Bloody Foothills, Frigid Highlands and Abaddon': {
         'pingid': 'ROLE ID',
-        'boss_packs': '4-6',
-        'super_uniques': 'Dac Farren and Shenk The Overseer',
-        'immunities': ['Cold', 'Fire', 'Lightning', 'Poison'],
+        'boss_packs': '19-25',
+        'super_uniques': 'Dac Farren, Shenk The Overseer, Eldritch the Rectifier, Sharptooth Slayer and Eyeback the Unleashed',
+        'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
     },
     'Burial Grounds, The Crypt, and The Mausoleum': {
         'pingid': 'ROLE ID',
