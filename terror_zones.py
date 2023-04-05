@@ -169,6 +169,11 @@ tzdict = {
         'super_uniques': 'Bonesaw Breaker',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical'],
     },
+    'Great Marsh': {
+        'pingid': 'ROLE ID',
+        'boss_packs': '10-15',
+        'immunities': ['Fire', 'Lightning', 'Cold'],
+    },
     'Jail': {
         'pingid': 'ROLE ID',
         'boss_packs': '18-24',
