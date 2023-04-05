@@ -70,9 +70,9 @@ tzdict = {
         'super_uniques': 'The Summoner',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical'],
     },
-    'Arreat Plateau': {
+    'Arreat Plateau and Pit of Acheron': {
         'pingid': 'ROLE ID',
-        'boss_packs': '9-11',
+        'boss_packs': '15-19',
         'super_uniques': 'Thresh Socket',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison'],
     },
