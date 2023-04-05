@@ -174,10 +174,10 @@ tzdict = {
         'boss_packs': '10-15',
         'immunities': ['Fire', 'Lightning', 'Cold'],
     },
-    'Jail': {
+    'Jail and Barracks': {
         'pingid': 'ROLE ID',
-        'boss_packs': '18-24',
-        'super_uniques': 'Pitspawn Fouldog',
+        'boss_packs': '24-32',
+        'super_uniques': 'Pitspawn Fouldog and The Smith',
         'immunities': ['Cold', 'Fire', 'Poison', 'Physical'],
     },
     'Kurast Bazaar, Ruined Temple, and Disused Fane': {
