@@ -180,13 +180,6 @@ tzdict = {
         'super_uniques': 'Battlemaid Sarina',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
     },
-    'Kurast Sewers': {
-        'pingid': 'ROLE ID',
-        'boss_packs': '12-14',
-        'super_uniques': 'Icehawk Riftwing',
-        'immunities': ['Cold', 'Lightning', 'Poison', 'Magic'],
-        'sparkly_chests': '1',
-    },
     'Lost City, Valley of Snakes, and Claw Viper Temple': {
         'pingid': 'ROLE ID',
         'boss_packs': '21-28',
