@@ -52,6 +52,11 @@ emoji_map = {
 # Bot Dictionary #
 ##################
 tzdict = {
+    'Ancient Tunnels': {
+        'pingid': 'ROLE ID',
+        'boss_packs': '6-8',
+        'immunities': ['Fire', 'Poison', 'Lightning', 'Magic'],
+    },
     'Ancient\'s Way and Icy Cellar': {
         'pingid': 'ROLE ID',
         'boss_packs': '6-8',
@@ -65,11 +70,17 @@ tzdict = {
         'super_uniques': 'The Summoner',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical'],
     },
-    'Arreat Plateau': {
+    'Arreat Plateau and Pit of Acheron': {
         'pingid': 'ROLE ID',
-        'boss_packs': '9-11',
+        'boss_packs': '15-19',
         'super_uniques': 'Thresh Socket',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison'],
+    },
+    'Black Marsh and The Hole': {
+        'pingid': 'ROLE ID',
+        'boss_packs': '15-20',
+        'immunities': ['Fire', 'Cold', 'Lighting', 'Poison'],
+        'sparkly_chests': '1',
     },
     'Blood Moor and Den of Evil': {
         'pingid': 'ROLE ID',
@@ -77,11 +88,11 @@ tzdict = {
         'super_uniques': 'Corpsefire',
         'immunities': ['Cold', 'Fire'],
     },
-    'Bloody Foothills': {
+    'Bloody Foothills, Frigid Highlands and Abaddon': {
         'pingid': 'ROLE ID',
-        'boss_packs': '4-6',
-        'super_uniques': 'Dac Farren and Shenk The Overseer',
-        'immunities': ['Cold', 'Fire', 'Lightning', 'Poison'],
+        'boss_packs': '19-25',
+        'super_uniques': 'Dac Farren, Shenk The Overseer, Eldritch the Rectifier, Sharptooth Slayer and Eyeback the Unleashed',
+        'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
     },
     'Burial Grounds, The Crypt, and The Mausoleum': {
         'pingid': 'ROLE ID',
@@ -115,11 +126,12 @@ tzdict = {
         'super_uniques': 'Frozenstein',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
     },
-    'Dark Wood': {
+    'Dark Wood and Underground Passage': {
         'pingid': 'ROLE ID',
-        'boss_packs': '7-9',
+        'boss_packs': '16-22',
         'super_uniques': 'Treehead Woodfist',
-        'immunities': ['Cold', 'Fire', 'Poison'],
+        'immunities': ['Cold', 'Fire', 'Poison', 'Lightning'],
+        'sparkly_chests': '1',
     },
     'Dry Hills and Halls of the Dead': {
         'pingid': 'ROLE ID',
@@ -145,22 +157,21 @@ tzdict = {
         'super_uniques': 'Stormtree and Witch Doctor Endugu',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
     },
-    'Frigid Highlands': {
+    'Glacial Trail and Drifter Cavern': {
         'pingid': 'ROLE ID',
-        'boss_packs': '9-11',
-        'super_uniques': 'Eldritch the Rectifier, Sharptooth Slayer, and Eyeback the Unleashed',
-        'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
-    },
-    'Glacial Trail': {
-        'pingid': 'ROLE ID',
-        'boss_packs': '7-9',
+        'boss_packs': '13-17',
         'super_uniques': 'Bonesaw Breaker',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical'],
     },
-    'Jail': {
+    'Great Marsh': {
         'pingid': 'ROLE ID',
-        'boss_packs': '18-24',
-        'super_uniques': 'Pitspawn Fouldog',
+        'boss_packs': '10-15',
+        'immunities': ['Fire', 'Lightning', 'Cold'],
+    },
+    'Jail and Barracks': {
+        'pingid': 'ROLE ID',
+        'boss_packs': '24-32',
+        'super_uniques': 'Pitspawn Fouldog and The Smith',
         'immunities': ['Cold', 'Fire', 'Poison', 'Physical'],
     },
     'Kurast Bazaar, Ruined Temple, and Disused Fane': {
@@ -168,13 +179,6 @@ tzdict = {
         'boss_packs': '15-17',
         'super_uniques': 'Battlemaid Sarina',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
-    },
-    'Kurast Sewers': {
-        'pingid': 'ROLE ID',
-        'boss_packs': '12-14',
-        'super_uniques': 'Icehawk Riftwing',
-        'immunities': ['Cold', 'Lightning', 'Poison', 'Magic'],
-        'sparkly_chests': '1',
     },
     'Lost City, Valley of Snakes, and Claw Viper Temple': {
         'pingid': 'ROLE ID',
