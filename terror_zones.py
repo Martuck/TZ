@@ -31,7 +31,9 @@ TZ_DISCORD_TOKEN = environ.get('TZ_DISCORD_TOKEN')
 TZ_DISCORD_CHANNEL_ID = int(environ.get('TZ_DISCORD_CHANNEL_ID', 0))
 
 # D2RuneWizard API (Required)
+# Token and contact (email address) for d2runewizard.com API, get a token at https://d2runewizard.com/integration
 TZ_D2RW_TOKEN = environ.get('TZ_D2RW_TOKEN')
+TZ_D2RW_CONTACT = environ.get('TZ_D2RW_CONTACT')
 
 # Emoji Mapping, currently uses default Discord Emoji.
 # You can use custom emoji by using the emoji ID, e.g. :emoji_name:
@@ -52,6 +54,11 @@ emoji_map = {
 # Bot Dictionary #
 ##################
 tzdict = {
+    'Ancient Tunnels': {
+        'pingid': 'ROLE ID',
+        'boss_packs': '6-8',
+        'immunities': ['Fire', 'Poison', 'Lightning', 'Magic'],
+    },
     'Ancient\'s Way and Icy Cellar': {
         'boss_packs': '6-8',
         'super_uniques': 'Snapchip Shatter',
@@ -63,22 +70,29 @@ tzdict = {
         'super_uniques': 'The Summoner',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical'],
     },
-    'Arreat Plateau': {
-        'boss_packs': '9-11',
+    'Arreat Plateau and Pit of Acheron': {
+        'boss_packs': '15-19',
         'super_uniques': 'Thresh Socket',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison'],
+    },
+    'Black Marsh and The Hole': {
+        'pingid': 'ROLE ID',
+        'boss_packs': '15-20',
+        'immunities': ['Fire', 'Cold', 'Lighting', 'Poison'],
+        'sparkly_chests': '1',
     },
     'Blood Moor and Den of Evil': {
         'boss_packs': '7-9',
         'super_uniques': 'Corpsefire',
         'immunities': ['Cold', 'Fire'],
     },
-    'Bloody Foothills': {
-        'boss_packs': '4-6',
-        'super_uniques': 'Dac Farren and Shenk The Overseer',
-        'immunities': ['Cold', 'Fire', 'Lightning', 'Poison'],
+    'Bloody Foothills, Frigid Highlands and Abaddon': {
+        'boss_packs': '19-25',
+        'super_uniques': 'Dac Farren, Shenk The Overseer, Eldritch the Rectifier, Sharptooth Slayer and Eyeback the Unleashed',
+        'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
     },
     'Burial Grounds, The Crypt, and The Mausoleum': {
+        'pingid': 'ROLE ID',
         'boss_packs': '8-10',
         'super_uniques': 'Blood Raven and Bonebreaker',
         'immunities': ['Lightning'],
@@ -105,10 +119,11 @@ tzdict = {
         'super_uniques': 'Frozenstein',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
     },
-    'Dark Wood': {
-        'boss_packs': '7-9',
+    'Dark Wood and Underground Passage': {
+        'boss_packs': '16-22',
         'super_uniques': 'Treehead Woodfist',
-        'immunities': ['Cold', 'Fire', 'Poison'],
+        'immunities': ['Cold', 'Fire', 'Poison', 'Lightning'],
+        'sparkly_chests': '1',
     },
     'Dry Hills and Halls of the Dead': {
         'boss_packs': '20-27',
@@ -130,33 +145,31 @@ tzdict = {
         'super_uniques': 'Stormtree and Witch Doctor Endugu',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
     },
-    'Frigid Highlands': {
-        'boss_packs': '9-11',
-        'super_uniques': 'Eldritch the Rectifier, Sharptooth Slayer, and Eyeback the Unleashed',
-        'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
-    },
-    'Glacial Trail': {
-        'boss_packs': '7-9',
+    'Glacial Trail and Drifter Cavern': {
+        'pingid': 'ROLE ID',
+        'boss_packs': '13-17',
         'super_uniques': 'Bonesaw Breaker',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical'],
     },
-    'Jail': {
-        'boss_packs': '18-24',
-        'super_uniques': 'Pitspawn Fouldog',
+    'Great Marsh': {
+        'pingid': 'ROLE ID',
+        'boss_packs': '10-15',
+        'immunities': ['Fire', 'Lightning', 'Cold'],
+    },
+    'Jail and Barracks': {
+        'pingid': 'ROLE ID',
+        'boss_packs': '24-32',
+        'super_uniques': 'Pitspawn Fouldog and The Smith',
         'immunities': ['Cold', 'Fire', 'Poison', 'Physical'],
     },
     'Kurast Bazaar, Ruined Temple, and Disused Fane': {
+        'pingid': 'ROLE ID',
         'boss_packs': '15-17',
         'super_uniques': 'Battlemaid Sarina',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
     },
-    'Kurast Sewers': {
-        'boss_packs': '12-14',
-        'super_uniques': 'Icehawk Riftwing',
-        'immunities': ['Cold', 'Lightning', 'Poison', 'Magic'],
-        'sparkly_chests': '1',
-    },
     'Lost City, Valley of Snakes, and Claw Viper Temple': {
+        'pingid': 'ROLE ID',
         'boss_packs': '21-28',
         'super_uniques': 'Dark Elder and Fangskin',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Magic'],
@@ -240,9 +253,9 @@ tzdict = {
 #####################
 __version__ = '0.1'
 
-# TZ_DISCORD_TOKEN, TZ_D2RW_TOKEN, and TZ_DISCORD_CHANNEL_ID are required
-if not TZ_DISCORD_TOKEN or not TZ_D2RW_TOKEN or TZ_DISCORD_CHANNEL_ID == 0:
-    print('Please set TZ_DISCORD_TOKEN, TZ_D2RW_TOKEN, and TZ_DISCORD_CHANNEL_ID in your environment.')
+# TZ_DISCORD_TOKEN, TZ_DISCORD_CHANNEL_ID, TZ_D2RW_TOKEN, and TZ_D2RW_CONTACT are required
+if not TZ_DISCORD_TOKEN or TZ_DISCORD_CHANNEL_ID == 0 or not TZ_D2RW_TOKEN or not TZ_D2RW_CONTACT:
+    print('Please set TZ_DISCORD_TOKEN, TZ_DISCORD_CHANNEL_ID, TZ_D2RW_TOKEN, and TZ_D2RW_CONTACT in your environment.')
     exit(1)
 
 
@@ -301,8 +314,12 @@ class D2RuneWizardClient():
         try:
             url = 'https://d2runewizard.com/api/terror-zone'
             params = {'token': TZ_D2RW_TOKEN}
-            # headers = {'User-Agent': f'dclone-discord/{__version__}'}
-            response = get(url, params=params, timeout=10)
+            headers = {
+                'D2R-Contact': TZ_D2RW_CONTACT,
+                'D2R-Platform': 'Discord',
+                'D2R-Repo': 'https://github.com/Martuck/TZ'
+            }
+            response = get(url, params=params, headers=headers, timeout=10)
 
             response.raise_for_status()
             return response.json().get('terrorZone', {})
@@ -318,11 +335,11 @@ class D2RuneWizardClient():
         # get the currently reported TZ status
         tz_status = D2RuneWizardClient.terror_zone()
         zone = tz_status.get('highestProbabilityZone', {}).get('zone')
-        pingid = tzdict.get(zone).get('pingid')
-        boss_packs = tzdict.get(zone).get('boss_packs')
-        super_uniques = tzdict.get(zone).get('super_uniques')
-        immunities = tzdict.get(zone).get('immunities')
-        sparkly_chests = tzdict.get(zone).get('sparkly_chests')
+        pingid = tzdict.get(zone, {}).get('pingid')
+        boss_packs = tzdict.get(zone, {}).get('boss_packs', 'UNKNOWN')
+        super_uniques = tzdict.get(zone, {}).get('super_uniques', 'UNKNOWN')
+        immunities = tzdict.get(zone, {}).get('immunities')
+        sparkly_chests = tzdict.get(zone, {}).get('sparkly_chests')
 
         # build the message
         message = f'Current Terror Zone: **{zone}**\n\n'
@@ -339,7 +356,7 @@ class D2RuneWizardClient():
             message += f'Sparkly Chests: {sparkly_chests}\n'
 
         # ping a discord role only if it is defined in tzdict
-        if pingid:
+        if pingid and pingid != 'ROLE ID':
             # verify that the role exists for this server by getting the alert channel,
             # getting the guild (server) that channel belongs to, and then getting
             # the role from that guild.
@@ -409,7 +426,7 @@ class DiscordClient(discord.Client):
 
         # if the terror zone changed since the last check, send a message to Discord
         if terror_zone and terror_zone != self.d2rw.current_terror_zone:
-            print(f'Terror Zone changed from {self.d2rw.current_terror_zone} to {terror_zone}')
+            print(f'Terror Zone changed from "{self.d2rw.current_terror_zone}" to "{terror_zone}"')
             tz_message = D2RuneWizardClient.terror_zone_message(self)
 
             channel = self.get_channel(TZ_DISCORD_CHANNEL_ID)
@@ -436,7 +453,7 @@ class DiscordClient(discord.Client):
         # this prevents a duplicate message from being sent when the bot starts
         # comment this out if you want the bot to post the current terror zone when it starts
         self.d2rw.current_terror_zone = terror_zone
-        print(f'Initial Terror Zone is {terror_zone}')
+        print(f'Initial Terror Zone is "{terror_zone}"')
 
 
 if __name__ == '__main__':
