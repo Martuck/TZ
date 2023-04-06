@@ -326,11 +326,11 @@ class D2RuneWizardClient():
         # get the currently reported TZ status
         tz_status = D2RuneWizardClient.terror_zone()
         zone = tz_status.get('highestProbabilityZone', {}).get('zone')
-        pingid = tzdict.get(zone).get('pingid')
-        boss_packs = tzdict.get(zone).get('boss_packs')
-        super_uniques = tzdict.get(zone).get('super_uniques')
-        immunities = tzdict.get(zone).get('immunities')
-        sparkly_chests = tzdict.get(zone).get('sparkly_chests')
+        pingid = tzdict.get(zone, {}).get('pingid')
+        boss_packs = tzdict.get(zone, {}).get('boss_packs', 'UNKNOWN')
+        super_uniques = tzdict.get(zone, {}).get('super_uniques', 'UNKNOWN')
+        immunities = tzdict.get(zone, {}).get('immunities')
+        sparkly_chests = tzdict.get(zone, {}).get('sparkly_chests')
 
         # build the message
         message = f'Current Terror Zone: **{zone}**\n\n'
@@ -416,7 +416,7 @@ class DiscordClient(discord.Client):
 
         # if the terror zone changed since the last check, send a message to Discord
         if terror_zone and terror_zone != self.d2rw.current_terror_zone:
-            print(f'Terror Zone changed from {self.d2rw.current_terror_zone} to {terror_zone}')
+            print(f'Terror Zone changed from "{self.d2rw.current_terror_zone}" to "{terror_zone}"')
             tz_message = D2RuneWizardClient.terror_zone_message(self)
 
             channel = self.get_channel(TZ_DISCORD_CHANNEL_ID)
@@ -443,7 +443,7 @@ class DiscordClient(discord.Client):
         # this prevents a duplicate message from being sent when the bot starts
         # comment this out if you want the bot to post the current terror zone when it starts
         self.d2rw.current_terror_zone = terror_zone
-        print(f'Initial Terror Zone is {terror_zone}')
+        print(f'Initial Terror Zone is "{terror_zone}"')
 
 
 if __name__ == '__main__':
