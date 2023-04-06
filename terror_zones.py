@@ -324,11 +324,11 @@ class D2RuneWizardClient():
         # get the currently reported TZ status
         tz_status = D2RuneWizardClient.terror_zone()
         zone = tz_status.get('highestProbabilityZone', {}).get('zone')
-        pingid = tzdict.get(zone).get('pingid')
-        boss_packs = tzdict.get(zone).get('boss_packs')
-        super_uniques = tzdict.get(zone).get('super_uniques')
-        immunities = tzdict.get(zone).get('immunities')
-        sparkly_chests = tzdict.get(zone).get('sparkly_chests')
+        pingid = tzdict.get(zone, {}).get('pingid')
+        boss_packs = tzdict.get(zone, {}).get('boss_packs', 'UNKNOWN')
+        super_uniques = tzdict.get(zone, {}).get('super_uniques', 'UNKNOWN')
+        immunities = tzdict.get(zone, {}).get('immunities')
+        sparkly_chests = tzdict.get(zone, {}).get('sparkly_chests')
 
         # build the message
         message = f'Current Terror Zone: **{zone}**\n\n'
