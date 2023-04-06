@@ -23,6 +23,8 @@ Configuration is done via environment variables, or you can edit the variables n
 **Required**
  - `TZ_DISCORD_TOKEN`: Token for connecting to Discord, create a bot account with the instructions [here](https://discordpy.readthedocs.io/en/stable/discord.html). Only the `Send Messages` permission is required.
  - `TZ_DISCORD_CHANNEL_ID`: The [channel id](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-) to send messages to.
+ - `TZ_D2RW_TOKEN`: Token for querying the d2runewizard.com Terror Zone API. Request one [here](https://d2runewizard.com/integration).
+ - `TZ_D2RW_CONTACT`: The email address for your d2runewizard.com account.
 
 **Optional**
  - Modify the `pingid` for each zone in `tzdict` if you'd like to ping a Discord role when the current zone changes. The `pingid` should be a string containing the id of the Discord role. In the future we'll support a configuration file to make this easier.
