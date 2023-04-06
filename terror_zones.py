@@ -55,7 +55,6 @@ emoji_map = {
 ##################
 tzdict = {
     'Ancient Tunnels': {
-        'pingid': 'ROLE ID',
         'boss_packs': '6-8',
         'immunities': ['Fire', 'Poison', 'Lightning', 'Magic'],
     },
@@ -76,7 +75,6 @@ tzdict = {
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison'],
     },
     'Black Marsh and The Hole': {
-        'pingid': 'ROLE ID',
         'boss_packs': '15-20',
         'immunities': ['Fire', 'Cold', 'Lighting', 'Poison'],
         'sparkly_chests': '1',
@@ -92,7 +90,6 @@ tzdict = {
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
     },
     'Burial Grounds, The Crypt, and The Mausoleum': {
-        'pingid': 'ROLE ID',
         'boss_packs': '8-10',
         'super_uniques': 'Blood Raven and Bonebreaker',
         'immunities': ['Lightning'],
@@ -146,30 +143,25 @@ tzdict = {
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
     },
     'Glacial Trail and Drifter Cavern': {
-        'pingid': 'ROLE ID',
         'boss_packs': '13-17',
         'super_uniques': 'Bonesaw Breaker',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical'],
     },
     'Great Marsh': {
-        'pingid': 'ROLE ID',
         'boss_packs': '10-15',
         'immunities': ['Fire', 'Lightning', 'Cold'],
     },
     'Jail and Barracks': {
-        'pingid': 'ROLE ID',
         'boss_packs': '24-32',
         'super_uniques': 'Pitspawn Fouldog and The Smith',
         'immunities': ['Cold', 'Fire', 'Poison', 'Physical'],
     },
     'Kurast Bazaar, Ruined Temple, and Disused Fane': {
-        'pingid': 'ROLE ID',
         'boss_packs': '15-17',
         'super_uniques': 'Battlemaid Sarina',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
     },
     'Lost City, Valley of Snakes, and Claw Viper Temple': {
-        'pingid': 'ROLE ID',
         'boss_packs': '21-28',
         'super_uniques': 'Dark Elder and Fangskin',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Magic'],
