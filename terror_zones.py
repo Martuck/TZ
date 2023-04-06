@@ -273,13 +273,18 @@ class D2RuneWizardClient():
 
                 # merge config.emoji into emoji_map
                 for immunity, emoji in custom_emoji.items():
-                    if immunity in emoji_map:
-                        emoji_map[immunity] = emoji
-                        print(f'[D2RW.load_config] Custom {immunity} immunity emoji is "{emoji}"')
-                    else:
-                        print(f'[D2RW.load_config] Error: "{immunity}" is not a valid immunity.')
+                    if immunity not in emoji_map:
+                        print(f'[D2RW.load_config:emoji] Error: "{immunity}" is not a valid immunity.')
+                        continue
+                    if not emoji or not isinstance(emoji, str):
+                        print(f'[D2RW.load_config:emoji] Error: "{emoji}" is not a valid emoji for "{immunity}".')
+                        continue
+
+                    # update the immunity emoji with the custom one
+                    emoji_map[immunity] = emoji
+                    print(f'[D2RW.load_config:emoji] Custom {immunity} immunity emoji is "{emoji}"')
             except Exception as ex:
-                print(f'[D2RW.load_config] Error: Unable to import custom emoji. {ex}')
+                print(f'[D2RW.load_config:emoji] Error: Unable to import custom emoji. {ex}')
 
             # try to import roles to ping
             try:
@@ -288,17 +293,16 @@ class D2RuneWizardClient():
                 # merge config.roles into tzdict as pingid
                 for zone, role in ping_roles.items():
                     if zone not in tzdict:
-                        print(f'[D2RW.load_config] Error: "{zone}" is not a valid terror zone.')
+                        print(f'[D2RW.load_config:roles] Error: "{zone}" is not a valid terror zone.')
                         continue
-                    elif not role or not role.isnumeric():
-                        print(f'[D2RW.load_config] Error: "{role}" is not a valid role ID for "{zone}".')
+                    if not role or not role.isnumeric():
+                        print(f'[D2RW.load_config:roles] Error: "{role}" is not a valid role ID for "{zone}".')
                         continue
 
                     tzdict[zone]['pingid'] = role
-                    print(f'[D2RW.load_config] Role to ping for {zone} is "{role}"')
-
+                    print(f'[D2RW.load_config:roles] Role to ping for "{zone}" is "{role}"')
             except Exception as ex:
-                print(f'[D2RW.load_config] Error: Unable to import roles to ping. {ex}')
+                print(f'[D2RW.load_config:roles] Error: Unable to import roles to ping. {ex}')
         else:
             print('No configuration file (config.py) found. Default emoji will be used and no roles will be pinged.')
 
