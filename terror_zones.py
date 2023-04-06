@@ -81,7 +81,7 @@ tzdict = {
     'Black Marsh and The Hole': {
         'pingid': 'ROLE ID',
         'boss_packs': '15-20',
-        'immunities': ['Fire', 'Cold', 'Lighting', 'Poison'],
+        'immunities': ['Fire', 'Cold', 'Lightning', 'Poison'],
         'sparkly_chests': '1',
     },
     'Blood Moor and Den of Evil': {
