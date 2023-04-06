@@ -31,7 +31,9 @@ TZ_DISCORD_TOKEN = environ.get('TZ_DISCORD_TOKEN')
 TZ_DISCORD_CHANNEL_ID = int(environ.get('TZ_DISCORD_CHANNEL_ID', 0))
 
 # D2RuneWizard API (Required)
+# Token and contact (email address) for d2runewizard.com API, get a token at https://d2runewizard.com/integration
 TZ_D2RW_TOKEN = environ.get('TZ_D2RW_TOKEN')
+TZ_D2RW_CONTACT = environ.get('TZ_D2RW_CONTACT')
 
 # Emoji Mapping, currently uses default Discord Emoji.
 # You can use custom emoji by using the emoji ID, e.g. :emoji_name:
@@ -304,7 +306,7 @@ class D2RuneWizardClient():
             url = 'https://d2runewizard.com/api/terror-zone'
             params = {'token': TZ_D2RW_TOKEN}
             headers = {
-                'D2R-Contact': 'EMAIL',
+                'D2R-Contact': TZ_D2RW_CONTACT,
                 'D2R-Platform': 'Discord',
                 'D2R-Repo': 'https://github.com/Martuck/TZ'
             }
