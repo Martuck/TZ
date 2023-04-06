@@ -334,7 +334,8 @@ class D2RuneWizardClient():
 
         # build the message
         message = f'Current Terror Zone: **{zone}**\n\n'
-        message += f'Super Uniques: {super_uniques}\n'
+        if super_uniques:
+            message += f'Super Uniques: {super_uniques}\n'
         message += f'Boss Packs: {boss_packs}\n'
 
         # Add emoji Immunities
