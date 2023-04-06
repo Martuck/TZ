@@ -287,11 +287,16 @@ class D2RuneWizardClient():
 
                 # merge config.roles into tzdict as pingid
                 for zone, role in ping_roles.items():
-                    if zone in tzdict:
-                        tzdict[zone]['pingid'] = role
-                        print(f'[D2RW.load_config] Role to ping for {zone} is "{role}"')
-                    else:
+                    if zone not in tzdict:
                         print(f'[D2RW.load_config] Error: "{zone}" is not a valid terror zone.')
+                        continue
+                    elif not role or not role.isnumeric():
+                        print(f'[D2RW.load_config] Error: "{role}" is not a valid role ID for "{zone}".')
+                        continue
+
+                    tzdict[zone]['pingid'] = role
+                    print(f'[D2RW.load_config] Role to ping for {zone} is "{role}"')
+
             except Exception as ex:
                 print(f'[D2RW.load_config] Error: Unable to import roles to ping. {ex}')
         else:
@@ -348,7 +353,7 @@ class D2RuneWizardClient():
             message += f'Sparkly Chests: {sparkly_chests}\n'
 
         # ping a discord role only if it is defined in tzdict
-        if pingid and pingid != 'ROLE ID':
+        if pingid and pingid.isnumeric():
             # verify that the role exists for this server by getting the alert channel,
             # getting the guild (server) that channel belongs to, and then getting
             # the role from that guild.
