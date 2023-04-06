@@ -347,7 +347,7 @@ class D2RuneWizardClient():
             message += f'Sparkly Chests: {sparkly_chests}\n'
 
         # ping a discord role only if it is defined in tzdict
-        if pingid:
+        if pingid and pingid != 'ROLE ID':
             # verify that the role exists for this server by getting the alert channel,
             # getting the guild (server) that channel belongs to, and then getting
             # the role from that guild.
