@@ -31,7 +31,9 @@ TZ_DISCORD_TOKEN = environ.get('TZ_DISCORD_TOKEN')
 TZ_DISCORD_CHANNEL_ID = int(environ.get('TZ_DISCORD_CHANNEL_ID', 0))
 
 # D2RuneWizard API (Required)
+# Token and contact (email address) for d2runewizard.com API, get a token at https://d2runewizard.com/integration
 TZ_D2RW_TOKEN = environ.get('TZ_D2RW_TOKEN')
+TZ_D2RW_CONTACT = environ.get('TZ_D2RW_CONTACT')
 
 # Emoji Mapping, currently uses default Discord Emoji.
 # You can use custom emoji by using the emoji ID, e.g. :emoji_name:
@@ -280,9 +282,9 @@ tzdict = {
 
 __version__ = '0.1'
 
-# TZ_DISCORD_TOKEN, TZ_D2RW_TOKEN, and TZ_DISCORD_CHANNEL_ID are required
-if not TZ_DISCORD_TOKEN or not TZ_D2RW_TOKEN or TZ_DISCORD_CHANNEL_ID == 0:
-    print('Please set TZ_DISCORD_TOKEN, TZ_D2RW_TOKEN, and TZ_DISCORD_CHANNEL_ID in your environment.')
+# TZ_DISCORD_TOKEN, TZ_DISCORD_CHANNEL_ID, TZ_D2RW_TOKEN, and TZ_D2RW_CONTACT are required
+if not TZ_DISCORD_TOKEN or TZ_DISCORD_CHANNEL_ID == 0 or not TZ_D2RW_TOKEN or not TZ_D2RW_CONTACT:
+    print('Please set TZ_DISCORD_TOKEN, TZ_DISCORD_CHANNEL_ID, TZ_D2RW_TOKEN, and TZ_D2RW_CONTACT in your environment.')
     exit(1)
 
 
@@ -304,7 +306,7 @@ class D2RuneWizardClient():
             url = 'https://d2runewizard.com/api/terror-zone'
             params = {'token': TZ_D2RW_TOKEN}
             headers = {
-                'D2R-Contact': 'EMAIL',
+                'D2R-Contact': TZ_D2RW_CONTACT,
                 'D2R-Platform': 'Discord',
                 'D2R-Repo': 'https://github.com/Martuck/TZ'
             }
@@ -345,7 +347,7 @@ class D2RuneWizardClient():
             message += f'Sparkly Chests: {sparkly_chests}\n'
 
         # ping a discord role only if it is defined in tzdict
-        if pingid:
+        if pingid and pingid != 'ROLE ID':
             # verify that the role exists for this server by getting the alert channel,
             # getting the guild (server) that channel belongs to, and then getting
             # the role from that guild.
