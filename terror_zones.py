@@ -334,7 +334,7 @@ class D2RuneWizardClient():
 
         # build the message
         message = f'Current Terror Zone: **{zone}**\n\n'
-        if super_uniques:
+        if super_uniques and super_uniques != 'UNKNOWN':
             message += f'Super Uniques: {super_uniques}\n'
         message += f'Boss Packs: {boss_packs}\n'
 
