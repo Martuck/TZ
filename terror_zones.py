@@ -16,7 +16,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-from os import environ
+from os import environ, path
 from requests import get
 from discord.ext import tasks
 import discord
@@ -55,221 +55,185 @@ emoji_map = {
 ##################
 tzdict = {
     'Ancient Tunnels': {
-        'pingid': 'ROLE ID',
         'boss_packs': '6-8',
         'immunities': ['Fire', 'Poison', 'Lightning', 'Magic'],
     },
     'Ancient\'s Way and Icy Cellar': {
-        'pingid': 'ROLE ID',
         'boss_packs': '6-8',
         'super_uniques': 'Snapchip Shatter',
         'immunities': ['Cold', 'Lightning', 'Poison', 'Physical'],
         'sparkly_chests': '1',
     },
     'Arcane Sanctuary': {
-        'pingid': 'ROLE ID',
         'boss_packs': '7-9',
         'super_uniques': 'The Summoner',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical'],
     },
     'Arreat Plateau and Pit of Acheron': {
-        'pingid': 'ROLE ID',
         'boss_packs': '15-19',
         'super_uniques': 'Thresh Socket',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison'],
     },
     'Black Marsh and The Hole': {
-        'pingid': 'ROLE ID',
         'boss_packs': '15-20',
         'immunities': ['Fire', 'Cold', 'Lightning', 'Poison'],
         'sparkly_chests': '1',
     },
     'Blood Moor and Den of Evil': {
-        'pingid': 'ROLE ID',
         'boss_packs': '7-9',
         'super_uniques': 'Corpsefire',
         'immunities': ['Cold', 'Fire'],
     },
     'Bloody Foothills, Frigid Highlands and Abaddon': {
-        'pingid': 'ROLE ID',
         'boss_packs': '19-25',
         'super_uniques': 'Dac Farren, Shenk The Overseer, Eldritch the Rectifier, Sharptooth Slayer and Eyeback the Unleashed',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
     },
     'Burial Grounds, The Crypt, and The Mausoleum': {
-        'pingid': 'ROLE ID',
         'boss_packs': '8-10',
         'super_uniques': 'Blood Raven and Bonebreaker',
         'immunities': ['Lightning'],
         'sparkly_chests': '2',
     },
     'Cathedral and Catacombs': {
-        'pingid': 'ROLE ID',
         'boss_packs': '27-35',
         'super_uniques': 'Bone Ash and Andariel',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Physical'],
     },
     'Chaos Sanctuary': {
-        'pingid': 'ROLE ID',
         'boss_packs': '6-7',
         'super_uniques': 'Grand Vizier of Chaos, Infector of Souls, Lord De Seis, and Diablo',
         'immunities': ['Cold', 'Fire', 'Lightning'],
     },
     'Cold Plains and The Cave': {
-        'pingid': 'ROLE ID',
         'boss_packs': '13-16',
         'super_uniques': 'Bishibosh and Coldcrow',
         'immunities': ['Cold', 'Fire', 'Lightning'],
         'sparkly_chests': '1',
     },
     'Crystalline Passage and Frozen River': {
-        'pingid': 'ROLE ID',
         'boss_packs': '13-17',
         'super_uniques': 'Frozenstein',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
     },
     'Dark Wood and Underground Passage': {
-        'pingid': 'ROLE ID',
         'boss_packs': '16-22',
         'super_uniques': 'Treehead Woodfist',
         'immunities': ['Cold', 'Fire', 'Poison', 'Lightning'],
         'sparkly_chests': '1',
     },
     'Dry Hills and Halls of the Dead': {
-        'pingid': 'ROLE ID',
         'boss_packs': '20-27',
         'super_uniques': 'Bloodwitch the Wild',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison'],
     },
     'Durance of Hate': {
-        'pingid': 'ROLE ID',
         'boss_packs': '15-21',
         'super_uniques': 'Wyand Voidbringer, Maffer Dragonhand, Bremm Sparkfist, and Mephisto',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison'],
     },
     'Far Oasis': {
-        'pingid': 'ROLE ID',
         'boss_packs': '7-9',
         'super_uniques': 'Beetleburst',
         'immunities': ['Lightning', 'Poison', 'Physical'],
     },
     'Flayer Jungle and Flayer Dungeon': {
-        'pingid': 'ROLE ID',
         'boss_packs': '22-29',
         'super_uniques': 'Stormtree and Witch Doctor Endugu',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
     },
     'Glacial Trail and Drifter Cavern': {
-        'pingid': 'ROLE ID',
         'boss_packs': '13-17',
         'super_uniques': 'Bonesaw Breaker',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical'],
     },
     'Great Marsh': {
-        'pingid': 'ROLE ID',
         'boss_packs': '10-15',
         'immunities': ['Fire', 'Lightning', 'Cold'],
     },
     'Jail and Barracks': {
-        'pingid': 'ROLE ID',
         'boss_packs': '24-32',
         'super_uniques': 'Pitspawn Fouldog and The Smith',
         'immunities': ['Cold', 'Fire', 'Poison', 'Physical'],
     },
     'Kurast Bazaar, Ruined Temple, and Disused Fane': {
-        'pingid': 'ROLE ID',
         'boss_packs': '15-17',
         'super_uniques': 'Battlemaid Sarina',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
     },
     'Lost City, Valley of Snakes, and Claw Viper Temple': {
-        'pingid': 'ROLE ID',
         'boss_packs': '21-28',
         'super_uniques': 'Dark Elder and Fangskin',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Magic'],
     },
     'Moo Moo Farm': {
-        'pingid': 'ROLE ID',
         'boss_packs': '6-8',
         'super_uniques': 'The Cow King',
     },
     'Nihlathak\'s Temple, Halls of Anguish, Halls of Pain, and Halls of Vaught': {
-        'pingid': 'ROLE ID',
         'boss_packs': '12-14',
         'super_uniques': 'Pindleskin and Nihlathak',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
     },
     'Outer Steppes and Plains of Despair': {
-        'pingid': 'ROLE ID',
         'boss_packs': '16-20',
         'super_uniques': 'Izual',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison'],
     },
     'River of Flame and City of the Damned': {
-        'pingid': 'ROLE ID',
         'boss_packs': '14-17',
         'super_uniques': 'Hephasto The Armorer',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison'],
     },
     'Rocky Waste and Stony Tomb': {
-        'pingid': 'ROLE ID',
         'boss_packs': '17-23',
         'super_uniques': 'Creeping Feature',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Magic'],
         'sparkly_chests': '1',
     },
     'Sewers': {
-        'pingid': 'ROLE ID',
         'boss_packs': '18-24',
         'super_uniques': 'Radament',
         'immunities': ['Cold', 'Fire', 'Poison', 'Magic'],
     },
     'Spider Forest and Spider Cavern': {
-        'pingid': 'ROLE ID',
         'boss_packs': '14-20',
         'super_uniques': 'Sszark The Burning',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison'],
     },
     'Stony Field': {
-        'pingid': 'ROLE ID',
         'boss_packs': '7-9',
         'super_uniques': 'Rakanishu',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison'],
     },
     'Tal Rasha\'s Tombs and Tal Rasha\'s Chamber': {
-        'pingid': 'ROLE ID',
         'boss_packs': '49-63',
         'super_uniques': 'Ancient Kaa The Soulless and Duriel',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Magic'],
         'sparkly_chests': '6',
     },
     'The Forgotten Tower': {
-        'pingid': 'ROLE ID',
         'boss_packs': '15-20',
         'super_uniques': 'The Countess',
         'immunities': ['Fire', 'Lightning', 'Physical'],
     },
     'The Pit': {
-        'pingid': 'ROLE ID',
         'boss_packs': '8-11',
         'super_uniques': 'None',
         'immunities': ['Cold', 'Fire'],
         'sparkly_chests': '1',
     },
     'Travincal': {
-        'pingid': 'ROLE ID',
         'boss_packs': '6-8',
         'super_uniques': 'Ismail Vilehand, Toorc Icefist, and Geleb Flamefinger',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison'],
     },
     'Tristram': {
-        'pingid': 'ROLE ID',
         'boss_packs': '5-6',
         'super_uniques': 'Griswold',
         'immunities': ['Fire', 'Lightning', 'Poison'],
     },
     'Worldstone Keep, Throne of Destruction, and Worldstone Chamber': {
-        'pingid': 'ROLE ID',
         'boss_packs': '22-29',
         'super_uniques': 'Colenzo The Annihilator, Achmel The Cursed, Bartuc The Bloody, Ventar The Unholy, Lister The Tormentor, and Baal',
         'immunities': ['Cold', 'Fire', 'Lightning', 'Poison', 'Physical', 'Magic'],
@@ -279,7 +243,6 @@ tzdict = {
 #####################
 # End of Dictionary #
 #####################
-
 __version__ = '0.1'
 
 # TZ_DISCORD_TOKEN, TZ_DISCORD_CHANNEL_ID, TZ_D2RW_TOKEN, and TZ_D2RW_CONTACT are required
@@ -293,8 +256,56 @@ class D2RuneWizardClient():
     Interacts with the d2runewizard.com terror zone API and tracks the current terror zone.
     """
     def __init__(self):
-        # tracks the current terror zone
-        self.current_terror_zone = None
+        self.current_terror_zone = None  # tracks the current terror zone
+
+    def load_config(self):
+        """
+        Loads customizations from config.py.
+        """
+        # pylint: disable=import-outside-toplevel
+        # if config.py exists, import emoji and roles
+        if path.exists('config.py'):
+            print('Importing configuration from config.py...')
+
+            # try to import custom emoji
+            try:
+                from config import emoji as custom_emoji
+
+                # merge config.emoji into emoji_map
+                for immunity, emoji in custom_emoji.items():
+                    if immunity not in emoji_map:
+                        print(f'[D2RW.load_config:emoji] Error: "{immunity}" is not a valid immunity.')
+                        continue
+                    if not emoji or not isinstance(emoji, str):
+                        print(f'[D2RW.load_config:emoji] Error: "{emoji}" is not a valid emoji for "{immunity}".')
+                        continue
+
+                    # update the immunity emoji with the custom one
+                    emoji_map[immunity] = emoji
+                    print(f'[D2RW.load_config:emoji] Custom {immunity} immunity emoji is "{emoji}"')
+            except Exception as ex:
+                print(f'[D2RW.load_config:emoji] Error: Unable to import custom emoji. {ex}')
+
+            # try to import roles to ping
+            try:
+                from config import roles as ping_roles
+
+                # merge config.roles into tzdict as pingid
+                for zone, role in ping_roles.items():
+                    if zone not in tzdict:
+                        print(f'[D2RW.load_config:roles] Error: "{zone}" is not a valid terror zone.')
+                        continue
+                    if not role or not role.isnumeric():
+                        print(f'[D2RW.load_config:roles] Error: "{role}" is not a valid role ID for "{zone}".')
+                        continue
+
+                    # add the role id to tzdict as pingid
+                    tzdict[zone]['pingid'] = role
+                    print(f'[D2RW.load_config:roles] Role to ping for "{zone}" is "{role}"')
+            except Exception as ex:
+                print(f'[D2RW.load_config:roles] Error: Unable to import roles to ping. {ex}')
+        else:
+            print('No configuration file (config.py) found. Default emoji will be used and no roles will be pinged.')
 
     @staticmethod
     def terror_zone():
@@ -348,7 +359,7 @@ class D2RuneWizardClient():
             message += f'Sparkly Chests: {sparkly_chests}\n'
 
         # ping a discord role only if it is defined in tzdict
-        if pingid and pingid != 'ROLE ID':
+        if pingid and pingid.isnumeric():
             # verify that the role exists for this server by getting the alert channel,
             # getting the guild (server) that channel belongs to, and then getting
             # the role from that guild.
@@ -371,6 +382,7 @@ class DiscordClient(discord.Client):
         super().__init__(*args, **kwargs)
 
         self.d2rw = D2RuneWizardClient()
+        self.d2rw.load_config()  # load customizations from config.py
 
     async def on_ready(self):
         """
