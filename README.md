@@ -27,7 +27,7 @@ Configuration is done via environment variables, or you can edit the variables n
  - `TZ_D2RW_CONTACT`: The email address for your d2runewizard.com account.
 
 **Optional**
- - Modify the `pingid` for each zone in `tzdict` if you'd like to ping a Discord role when the current zone changes. The `pingid` should be a string containing the id of the Discord role. In the future we'll support a configuration file to make this easier.
+To customize the emoji representing monster immunities or to ping a Discord role when a Terror Zone changes, see the instructions in `sample_config.py`.
 
 ### Running
 
