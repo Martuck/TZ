@@ -299,6 +299,7 @@ class D2RuneWizardClient():
                         print(f'[D2RW.load_config:roles] Error: "{role}" is not a valid role ID for "{zone}".')
                         continue
 
+                    # add the role id to tzdict as pingid
                     tzdict[zone]['pingid'] = role
                     print(f'[D2RW.load_config:roles] Role to ping for "{zone}" is "{role}"')
             except Exception as ex:
