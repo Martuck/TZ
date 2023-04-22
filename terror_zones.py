@@ -16,6 +16,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+from asyncio import sleep as async_sleep
 from os import environ, path
 from requests import get
 from discord.ext import tasks
@@ -461,6 +462,7 @@ class DiscordClient(discord.Client):
         # comment this out if you want the bot to post the current terror zone when it starts
         self.d2rw.current_terror_zone = terror_zone
         print(f'Initial Terror Zone is "{terror_zone}"')
+        await async_sleep(60)
 
 
 if __name__ == '__main__':
