@@ -330,12 +330,15 @@ class D2RuneWizardClient():
             return {}
 
     @staticmethod
-    def terror_zone_message(discord_client):
+    def terror_zone_message(discord_client, tz_status):
         """
         Returns a formatted message of the current terror zone status.
+
+        :param: discord_client: The discord client object
+        :param: tz_status: The current TZ status
+
+        :return: The formatted message for Discord
         """
-        # get the currently reported TZ status
-        tz_status = D2RuneWizardClient.terror_zone()
         zone = tz_status.get('highestProbabilityZone', {}).get('zone')
         pingid = tzdict.get(zone, {}).get('pingid')
         boss_packs = tzdict.get(zone, {}).get('boss_packs', 'UNKNOWN')
@@ -413,7 +416,7 @@ class DiscordClient(discord.Client):
         """
         if message.content.startswith('.tz') or message.content.startswith('!tz'):
             print(f'Responding to TZ chatop from {message.author}')
-            current_status = D2RuneWizardClient.terror_zone_message(self)
+            current_status = D2RuneWizardClient.terror_zone_message(self, self.d2rw.terror_zone())
 
             channel = self.get_channel(message.channel.id)
             await channel.send(current_status)
@@ -425,12 +428,13 @@ class DiscordClient(discord.Client):
         If the current status is different from the last known status, a message is sent to Discord.
         """
         # print('>> Checking Terror Zone status...')
-        terror_zone = self.d2rw.terror_zone().get('highestProbabilityZone', {}).get('zone')
+        tz_status = self.d2rw.terror_zone()
+        terror_zone = tz_status.get('highestProbabilityZone', {}).get('zone')
 
         # if the terror zone changed since the last check, send a message to Discord
         if terror_zone and terror_zone != self.d2rw.current_terror_zone:
             print(f'Terror Zone changed from "{self.d2rw.current_terror_zone}" to "{terror_zone}"')
-            tz_message = D2RuneWizardClient.terror_zone_message(self)
+            tz_message = D2RuneWizardClient.terror_zone_message(self, tz_status)
 
             channel = self.get_channel(TZ_DISCORD_CHANNEL_ID)
             await channel.send(tz_message)
