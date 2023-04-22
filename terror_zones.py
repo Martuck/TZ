@@ -16,7 +16,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-from asyncio import sleep as async_sleep
+from asyncio import sleep
 from os import environ, path
 from requests import get
 from discord.ext import tasks
@@ -309,7 +309,7 @@ class D2RuneWizardClient():
             print('No configuration file (config.py) found. Default emoji will be used and no roles will be pinged.')
 
     @staticmethod
-    def terror_zone():
+    async def terror_zone():
         """
         Get the currently reported TZ status from the D2RW TZ API.
         API documentation: https://d2runewizard.com/integration#terror-zone-tracker
@@ -323,6 +323,13 @@ class D2RuneWizardClient():
                 'D2R-Repo': 'https://github.com/Martuck/TZ'
             }
             response = get(url, params=params, headers=headers, timeout=10)
+
+            # handle api rate limiting
+            if response.status_code == 429:
+                retry_after = int(response.headers.get('Retry-After', 60))
+                print(f'[D2RW.terror_zone] API Error: HTTP {response.status_code} {response.reason}; sleeping for {retry_after} seconds...')
+                await sleep(retry_after)
+                return {}
 
             response.raise_for_status()
             return response.json().get('terrorZone', {})
@@ -417,7 +424,8 @@ class DiscordClient(discord.Client):
         """
         if message.content.startswith('.tz') or message.content.startswith('!tz'):
             print(f'Responding to TZ chatop from {message.author}')
-            current_status = D2RuneWizardClient.terror_zone_message(self, self.d2rw.terror_zone())
+            tz_status = await self.d2rw.terror_zone()
+            current_status = D2RuneWizardClient.terror_zone_message(self, tz_status)
 
             channel = self.get_channel(message.channel.id)
             await channel.send(current_status)
@@ -429,7 +437,7 @@ class DiscordClient(discord.Client):
         If the current status is different from the last known status, a message is sent to Discord.
         """
         # print('>> Checking Terror Zone status...')
-        tz_status = self.d2rw.terror_zone()
+        tz_status = await self.d2rw.terror_zone()
         terror_zone = tz_status.get('highestProbabilityZone', {}).get('zone')
 
         # if the terror zone changed since the last check, send a message to Discord
@@ -452,7 +460,8 @@ class DiscordClient(discord.Client):
 
         # get the current terror zone
         try:
-            terror_zone = self.d2rw.terror_zone().get('highestProbabilityZone', {}).get('zone')
+            tz_status = await self.d2rw.terror_zone()
+            terror_zone = tz_status.get('highestProbabilityZone', {}).get('zone')
         except Exception as err:
             print(f'Unable to set the current terror zone at startup: {err}')
             return
@@ -462,7 +471,7 @@ class DiscordClient(discord.Client):
         # comment this out if you want the bot to post the current terror zone when it starts
         self.d2rw.current_terror_zone = terror_zone
         print(f'Initial Terror Zone is "{terror_zone}"')
-        await async_sleep(60)
+        await sleep(60)
 
 
 if __name__ == '__main__':
