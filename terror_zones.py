@@ -418,18 +418,6 @@ class DiscordClient(discord.Client):
         except RuntimeError as err:
             print(f'Background Task Error: {err}')
 
-    async def on_message(self, message):
-        """
-        This is called any time the bot receives a message. It implements the tz chatop.
-        """
-        if message.content.startswith('.tz') or message.content.startswith('!tz'):
-            print(f'Responding to TZ chatop from {message.author}')
-            tz_status = await self.d2rw.terror_zone()
-            current_status = D2RuneWizardClient.terror_zone_message(self, tz_status)
-
-            channel = self.get_channel(message.channel.id)
-            await channel.send(current_status)
-
     @tasks.loop(seconds=60)
     async def check_terror_zone(self):
         """
