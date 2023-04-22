@@ -2,8 +2,6 @@
 
 A Discord bot for reporting Diablo 2: Resurrected [Terror Zone](https://d2runewizard.com/terror-zone-tracker) changes. By default it will report the terror zone, super uniques, boss packs, immunities, and super chests every hour when the Terror Zone changes.
 
-You can also get the current terror zone by typing `.tz` or `!tz` in chat.
-
 ## Usage
 
 Requires Python 3.8+, tested on Ubuntu 22.04.
